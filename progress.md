@@ -4,3 +4,5 @@
 
 * 2025-07-03 00:06:24 - style: create database schemas for profiles and categories
 
+* 2025-07-03 14:55:29 - refactor: add basic layout wireframes for dashboard
+
