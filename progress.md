@@ -6,3 +6,5 @@
 
 * 2025-07-03 14:55:29 - refactor: add basic layout wireframes for dashboard
 
+* 2025-07-07 06:40:36 - feat: configure supabase environment variables
+
