@@ -12,3 +12,5 @@
 
 * 2025-07-07 18:06:55 - style: implement login and registration page forms
 
+* 2025-07-07 18:34:02 - refactor: write validation helper functions for auth forms
+
