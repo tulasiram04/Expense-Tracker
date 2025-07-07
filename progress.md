@@ -10,3 +10,5 @@
 
 * 2025-07-07 10:01:39 - fix: add responsive navigation bar
 
+* 2025-07-07 18:06:55 - style: implement login and registration page forms
+
