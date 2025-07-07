@@ -8,3 +8,5 @@
 
 * 2025-07-07 06:40:36 - feat: configure supabase environment variables
 
+* 2025-07-07 10:01:39 - fix: add responsive navigation bar
+
