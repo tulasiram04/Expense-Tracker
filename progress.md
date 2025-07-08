@@ -14,3 +14,5 @@
 
 * 2025-07-07 18:34:02 - refactor: write validation helper functions for auth forms
 
+* 2025-07-08 07:35:49 - feat: connect signup form to supabase auth API
+
