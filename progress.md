@@ -16,3 +16,5 @@
 
 * 2025-07-08 07:35:49 - feat: connect signup form to supabase auth API
 
+* 2025-07-09 18:54:34 - fix: handle signin errors and success redirects
+
