@@ -18,3 +18,5 @@
 
 * 2025-07-09 18:54:34 - fix: handle signin errors and success redirects
 
+* 2025-07-10 09:11:27 - style: implement route guards to protect dashboard page
+
