@@ -22,3 +22,5 @@
 
 * 2025-07-12 10:28:49 - refactor: setup logout handler and session cleanup
 
+* 2025-07-12 20:29:13 - feat: add layout structure for expense cards
+
