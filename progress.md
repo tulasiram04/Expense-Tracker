@@ -20,3 +20,5 @@
 
 * 2025-07-10 09:11:27 - style: implement route guards to protect dashboard page
 
+* 2025-07-12 10:28:49 - refactor: setup logout handler and session cleanup
+
