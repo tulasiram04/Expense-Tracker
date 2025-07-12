@@ -24,3 +24,5 @@
 
 * 2025-07-12 20:29:13 - feat: add layout structure for expense cards
 
+* 2025-07-13 02:48:35 - fix: style dashboard main header and metrics widgets
+
