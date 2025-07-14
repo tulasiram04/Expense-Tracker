@@ -28,3 +28,5 @@
 
 * 2025-07-14 16:45:55 - style: implement dynamic profile picture fallback initials
 
+* 2025-07-15 04:14:23 - refactor: add custom category color indicators
+
