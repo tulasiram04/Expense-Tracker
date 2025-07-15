@@ -32,3 +32,5 @@
 
 * 2025-07-15 14:19:45 - feat: design transaction add form modal layout
 
+* 2025-07-15 19:36:33 - fix: bind add transaction input fields to javascript state
+
