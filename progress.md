@@ -30,3 +30,5 @@
 
 * 2025-07-15 04:14:23 - refactor: add custom category color indicators
 
+* 2025-07-15 14:19:45 - feat: design transaction add form modal layout
+
