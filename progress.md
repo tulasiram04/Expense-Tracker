@@ -40,3 +40,5 @@
 
 * 2025-07-17 14:07:26 - feat: style transaction grid table headers and text alignments
 
+* 2025-07-18 02:42:38 - fix: add search bar filtering capability for transactions
+
