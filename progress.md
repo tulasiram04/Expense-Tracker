@@ -38,3 +38,5 @@
 
 * 2025-07-17 13:56:36 - refactor: integrate transaction listings table on home page
 
+* 2025-07-17 14:07:26 - feat: style transaction grid table headers and text alignments
+
