@@ -36,3 +36,5 @@
 
 * 2025-07-16 03:56:11 - style: write backend create-transaction query call
 
+* 2025-07-17 13:56:36 - refactor: integrate transaction listings table on home page
+
