@@ -50,3 +50,5 @@
 
 * 2025-07-18 10:43:11 - fix: refactor database connection pool management
 
+* 2025-07-18 11:13:21 - style: add budget overview progress bar card
+
