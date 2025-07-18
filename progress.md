@@ -52,3 +52,5 @@
 
 * 2025-07-18 11:13:21 - style: add budget overview progress bar card
 
+* 2025-07-18 21:00:30 - refactor: calculate budget consumption percent dynamically
+
