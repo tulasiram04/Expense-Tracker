@@ -42,3 +42,5 @@
 
 * 2025-07-18 02:42:38 - fix: add search bar filtering capability for transactions
 
+* 2025-07-18 06:48:20 - style: support filtering by transaction type (income/expense)
+
