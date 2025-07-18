@@ -46,3 +46,5 @@
 
 * 2025-07-18 10:23:13 - refactor: add filter options for accounts and date range selection
 
+* 2025-07-18 10:23:30 - feat: implement pagination logic for transaction tables
+
