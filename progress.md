@@ -48,3 +48,5 @@
 
 * 2025-07-18 10:23:30 - feat: implement pagination logic for transaction tables
 
+* 2025-07-18 10:43:11 - fix: refactor database connection pool management
+
