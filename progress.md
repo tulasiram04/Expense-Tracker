@@ -44,3 +44,5 @@
 
 * 2025-07-18 06:48:20 - style: support filtering by transaction type (income/expense)
 
+* 2025-07-18 10:23:13 - refactor: add filter options for accounts and date range selection
+
