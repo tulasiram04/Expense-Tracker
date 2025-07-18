@@ -54,3 +54,5 @@
 
 * 2025-07-18 21:00:30 - refactor: calculate budget consumption percent dynamically
 
+* 2025-07-18 22:57:48 - feat: implement green-to-red budget progress indicator logic
+
