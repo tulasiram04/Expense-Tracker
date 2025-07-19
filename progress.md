@@ -58,3 +58,5 @@
 
 * 2025-07-19 06:00:39 - fix: add transaction edit capabilities
 
+* 2025-07-19 10:39:18 - style: implement duplicate transaction feature for repetitive inputs
+
