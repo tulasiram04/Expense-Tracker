@@ -60,3 +60,5 @@
 
 * 2025-07-19 10:39:18 - style: implement duplicate transaction feature for repetitive inputs
 
+* 2025-07-19 23:41:00 - refactor: add transaction deletion modal confirmation
+
