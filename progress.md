@@ -56,3 +56,5 @@
 
 * 2025-07-18 22:57:48 - feat: implement green-to-red budget progress indicator logic
 
+* 2025-07-19 06:00:39 - fix: add transaction edit capabilities
+
