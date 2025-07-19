@@ -62,3 +62,5 @@
 
 * 2025-07-19 23:41:00 - refactor: add transaction deletion modal confirmation
 
+* 2025-07-20 00:01:28 - feat: create settings page for category definitions
+
