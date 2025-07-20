@@ -64,3 +64,5 @@
 
 * 2025-07-20 00:01:28 - feat: create settings page for category definitions
 
+* 2025-07-20 13:17:08 - fix: implement custom category creation workflow
+
