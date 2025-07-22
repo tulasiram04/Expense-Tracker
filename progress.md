@@ -66,3 +66,5 @@
 
 * 2025-07-20 13:17:08 - fix: implement custom category creation workflow
 
+* 2025-07-22 11:22:04 - style: integrate dynamic color picker tool for categories
+
