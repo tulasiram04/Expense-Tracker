@@ -70,3 +70,5 @@
 
 * 2025-07-22 13:19:02 - refactor: add predefined icon list selector for category models
 
+* 2025-07-22 14:16:39 - feat: style settings grid panels and input fields
+
