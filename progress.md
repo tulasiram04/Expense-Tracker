@@ -68,3 +68,5 @@
 
 * 2025-07-22 11:22:04 - style: integrate dynamic color picker tool for categories
 
+* 2025-07-22 13:19:02 - refactor: add predefined icon list selector for category models
+
