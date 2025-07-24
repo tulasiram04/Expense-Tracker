@@ -72,3 +72,5 @@
 
 * 2025-07-22 14:16:39 - feat: style settings grid panels and input fields
 
+* 2025-07-24 06:30:57 - fix: integrate chart.js script files and wrapper canvas
+
