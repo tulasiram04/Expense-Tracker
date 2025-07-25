@@ -74,3 +74,5 @@
 
 * 2025-07-24 06:30:57 - fix: integrate chart.js script files and wrapper canvas
 
+* 2025-07-25 07:16:36 - style: render total income vs expense doughnut chart
+
