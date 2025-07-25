@@ -76,3 +76,5 @@
 
 * 2025-07-25 07:16:36 - style: render total income vs expense doughnut chart
 
+* 2025-07-26 02:35:26 - refactor: calculate monthly category percentage breakdown
+
