@@ -78,3 +78,5 @@
 
 * 2025-07-26 02:35:26 - refactor: calculate monthly category percentage breakdown
 
+* 2025-07-26 08:51:20 - feat: render daily expense bar chart trendline
+
