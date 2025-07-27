@@ -80,3 +80,6 @@
 
 * 2025-07-26 08:51:20 - feat: render daily expense bar chart trendline
 
+
+* 2025-07-27 22:06:33 - style: align action button icons vertically in profile editor
+
