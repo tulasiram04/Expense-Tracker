@@ -83,3 +83,6 @@
 
 * 2025-07-27 22:06:33 - style: align action button icons vertically in profile editor
 
+
+* 2025-07-28 20:54:11 - refactor: clean up deprecated helpers in dashboard
+
