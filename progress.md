@@ -86,3 +86,6 @@
 
 * 2025-07-28 20:54:11 - refactor: clean up deprecated helpers in dashboard
 
+
+* 2025-07-29 15:25:23 - style: update layout padding and margin values for reports page
+
