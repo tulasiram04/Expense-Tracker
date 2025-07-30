@@ -89,3 +89,6 @@
 
 * 2025-07-29 15:25:23 - style: update layout padding and margin values for reports page
 
+
+* 2025-07-30 14:23:42 - refactor: optimize rendering logic of Supabase API client
+
