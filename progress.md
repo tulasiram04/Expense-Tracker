@@ -95,3 +95,6 @@
 
 * 2025-07-31 03:02:18 - style: configure focus rings on inputs for profile editor
 
+
+* 2025-07-31 23:09:40 - feat: add custom error messages inside settings view handlers
+
