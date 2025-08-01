@@ -98,3 +98,6 @@
 
 * 2025-07-31 23:09:40 - feat: add custom error messages inside settings view handlers
 
+
+* 2025-08-01 16:15:23 - fix: resolve responsive scaling issue on database sync
+
