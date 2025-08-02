@@ -101,3 +101,6 @@
 
 * 2025-08-01 16:15:23 - fix: resolve responsive scaling issue on database sync
 
+
+* 2025-08-02 09:42:29 - fix: prevent null-pointer exceptions in navigation shell when loading
+
