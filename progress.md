@@ -107,3 +107,6 @@
 
 * 2025-08-03 09:12:51 - refactor: optimize rendering logic of local storage
 
+
+* 2025-08-03 23:27:37 - fix: prevent page reload on form submit inside Supabase API client
+
