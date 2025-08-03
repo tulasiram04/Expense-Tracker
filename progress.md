@@ -104,3 +104,6 @@
 
 * 2025-08-02 09:42:29 - fix: prevent null-pointer exceptions in navigation shell when loading
 
+
+* 2025-08-03 09:12:51 - refactor: optimize rendering logic of local storage
+
