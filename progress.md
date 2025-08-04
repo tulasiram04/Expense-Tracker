@@ -110,3 +110,6 @@
 
 * 2025-08-03 23:27:37 - fix: prevent page reload on form submit inside Supabase API client
 
+
+* 2025-08-04 19:24:18 - feat: add tooltip hints to dashboard
+
