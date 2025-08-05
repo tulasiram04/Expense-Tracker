@@ -113,3 +113,6 @@
 
 * 2025-08-04 19:24:18 - feat: add tooltip hints to dashboard
 
+
+* 2025-08-05 18:22:36 - fix: prevent null-pointer exceptions in Supabase API client when loading
+
