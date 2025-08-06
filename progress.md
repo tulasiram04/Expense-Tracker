@@ -119,3 +119,6 @@
 
 * 2025-08-06 14:40:39 - style: configure focus rings on inputs for database sync
 
+
+* 2025-08-07 02:15:09 - style: align action button icons vertically in transaction filters
+
