@@ -122,3 +122,6 @@
 
 * 2025-08-07 02:15:09 - style: align action button icons vertically in transaction filters
 
+
+* 2025-08-07 19:31:34 - fix: clear validation states on modal reset for dashboard
+
