@@ -125,3 +125,6 @@
 
 * 2025-08-07 19:31:34 - fix: clear validation states on modal reset for dashboard
 
+
+* 2025-08-08 09:35:39 - style: configure focus rings on inputs for transaction filters
+
