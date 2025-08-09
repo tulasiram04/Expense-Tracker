@@ -128,3 +128,6 @@
 
 * 2025-08-08 09:35:39 - style: configure focus rings on inputs for transaction filters
 
+
+* 2025-08-09 08:12:36 - fix: clear validation states on modal reset for profile editor
+
