@@ -131,3 +131,6 @@
 
 * 2025-08-09 08:12:36 - fix: clear validation states on modal reset for profile editor
 
+
+* 2025-08-09 23:31:28 - fix: prevent null-pointer exceptions in settings view when loading
+
