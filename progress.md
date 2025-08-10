@@ -134,3 +134,6 @@
 
 * 2025-08-09 23:31:28 - fix: prevent null-pointer exceptions in settings view when loading
 
+
+* 2025-08-10 13:46:14 - fix: clear validation states on modal reset for auth controller
+
