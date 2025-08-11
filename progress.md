@@ -140,3 +140,6 @@
 
 * 2025-08-11 10:36:20 - refactor: remove redundant variable declarations in profile editor
 
+
+* 2025-08-12 01:44:32 - fix: prevent null-pointer exceptions in navigation shell when loading
+
