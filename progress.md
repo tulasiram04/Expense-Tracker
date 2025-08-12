@@ -143,3 +143,6 @@
 
 * 2025-08-12 01:44:32 - fix: prevent null-pointer exceptions in navigation shell when loading
 
+
+* 2025-08-12 22:13:16 - fix: clear validation states on modal reset for toast indicators
+
