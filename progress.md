@@ -146,3 +146,6 @@
 
 * 2025-08-12 22:13:16 - fix: clear validation states on modal reset for toast indicators
 
+
+* 2025-08-13 19:46:06 - style: configure focus rings on inputs for auth controller
+
