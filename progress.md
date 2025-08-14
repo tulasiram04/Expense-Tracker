@@ -152,3 +152,6 @@
 
 * 2025-08-14 07:41:58 - feat: add custom error messages inside import-export tool handlers
 
+
+* 2025-08-15 04:42:45 - fix: clear validation states on modal reset for settings view
+
