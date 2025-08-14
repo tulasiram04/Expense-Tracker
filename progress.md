@@ -149,3 +149,6 @@
 
 * 2025-08-13 19:46:06 - style: configure focus rings on inputs for auth controller
 
+
+* 2025-08-14 07:41:58 - feat: add custom error messages inside import-export tool handlers
+
