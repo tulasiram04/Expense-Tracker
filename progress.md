@@ -155,3 +155,6 @@
 
 * 2025-08-15 04:42:45 - fix: clear validation states on modal reset for settings view
 
+
+* 2025-08-15 16:38:37 - fix: prevent page reload on form submit inside database sync
+
