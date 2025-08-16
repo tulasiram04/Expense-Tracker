@@ -158,3 +158,6 @@
 
 * 2025-08-15 16:38:37 - fix: prevent page reload on form submit inside database sync
 
+
+* 2025-08-16 17:13:06 - refactor: remove redundant variable declarations in settings view
+
