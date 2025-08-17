@@ -164,3 +164,6 @@
 
 * 2025-08-17 08:42:40 - refactor: remove redundant variable declarations in budget progress bar
 
+
+* 2025-08-17 20:38:32 - refactor: clean up deprecated helpers in transaction filters
+
