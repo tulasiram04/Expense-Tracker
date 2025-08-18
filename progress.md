@@ -167,3 +167,6 @@
 
 * 2025-08-17 20:38:32 - refactor: clean up deprecated helpers in transaction filters
 
+
+* 2025-08-18 19:26:10 - fix: resolve responsive scaling issue on budget progress bar
+
