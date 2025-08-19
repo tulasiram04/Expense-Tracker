@@ -170,3 +170,6 @@
 
 * 2025-08-18 19:26:10 - fix: resolve responsive scaling issue on budget progress bar
 
+
+* 2025-08-19 13:57:22 - feat: cache recent queries of local storage locally
+
