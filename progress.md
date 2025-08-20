@@ -176,3 +176,6 @@
 
 * 2025-08-20 10:26:05 - fix: prevent page reload on form submit inside local storage
 
+
+* 2025-08-21 02:27:42 - fix: prevent page reload on form submit inside profile editor
+
