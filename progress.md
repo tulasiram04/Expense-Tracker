@@ -173,3 +173,6 @@
 
 * 2025-08-19 13:57:22 - feat: cache recent queries of local storage locally
 
+
+* 2025-08-20 10:26:05 - fix: prevent page reload on form submit inside local storage
+
