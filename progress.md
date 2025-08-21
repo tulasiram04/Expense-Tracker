@@ -179,3 +179,6 @@
 
 * 2025-08-21 02:27:42 - fix: prevent page reload on form submit inside profile editor
 
+
+* 2025-08-21 14:34:16 - perf: optimize file loading times of Supabase API client module
+
