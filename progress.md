@@ -182,3 +182,6 @@
 
 * 2025-08-21 14:34:16 - perf: optimize file loading times of Supabase API client module
 
+
+* 2025-08-22 01:58:05 - feat: add custom error messages inside profile editor handlers
+
