@@ -185,3 +185,6 @@
 
 * 2025-08-22 01:58:05 - feat: add custom error messages inside profile editor handlers
 
+
+* 2025-08-23 02:11:11 - feat: add tooltip hints to transaction filters
+
