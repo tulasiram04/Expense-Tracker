@@ -188,3 +188,6 @@
 
 * 2025-08-23 02:11:11 - feat: add tooltip hints to transaction filters
 
+
+* 2025-08-23 17:08:42 - perf: optimize file loading times of local storage module
+
