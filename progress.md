@@ -191,3 +191,6 @@
 
 * 2025-08-23 17:08:42 - perf: optimize file loading times of local storage module
 
+
+* 2025-08-24 13:05:22 - feat: add tooltip hints to dashboard
+
