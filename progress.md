@@ -194,3 +194,6 @@
 
 * 2025-08-24 13:05:22 - feat: add tooltip hints to dashboard
 
+
+* 2025-08-25 02:05:21 - fix: clear validation states on modal reset for local storage
+
