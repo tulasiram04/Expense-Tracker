@@ -200,3 +200,6 @@
 
 * 2025-08-25 14:54:38 - refactor: optimize rendering logic of profile editor
 
+
+* 2025-08-26 03:11:53 - fix: prevent page reload on form submit inside toast indicators
+
