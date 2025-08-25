@@ -197,3 +197,6 @@
 
 * 2025-08-25 02:05:21 - fix: clear validation states on modal reset for local storage
 
+
+* 2025-08-25 14:54:38 - refactor: optimize rendering logic of profile editor
+
