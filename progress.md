@@ -203,3 +203,6 @@
 
 * 2025-08-26 03:11:53 - fix: prevent page reload on form submit inside toast indicators
 
+
+* 2025-08-27 01:06:05 - feat: add tooltip hints to auth controller
+
