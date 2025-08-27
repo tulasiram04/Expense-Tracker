@@ -209,3 +209,6 @@
 
 * 2025-08-27 14:06:04 - refactor: clean up deprecated helpers in toast indicators
 
+
+* 2025-08-28 03:38:05 - feat: add custom error messages inside categories manager handlers
+
