@@ -206,3 +206,6 @@
 
 * 2025-08-27 01:06:05 - feat: add tooltip hints to auth controller
 
+
+* 2025-08-27 14:06:04 - refactor: clean up deprecated helpers in toast indicators
+
