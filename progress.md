@@ -212,3 +212,6 @@
 
 * 2025-08-28 03:38:05 - feat: add custom error messages inside categories manager handlers
 
+
+* 2025-08-28 21:37:14 - refactor: remove redundant variable declarations in auth controller
+
