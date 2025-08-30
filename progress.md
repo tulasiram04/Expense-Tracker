@@ -221,3 +221,6 @@
 
 * 2025-08-30 14:02:39 - style: align action button icons vertically in dashboard
 
+
+* 2025-08-31 01:58:31 - fix: resolve responsive scaling issue on transaction filters
+
