@@ -218,3 +218,6 @@
 
 * 2025-08-29 16:51:11 - perf: optimize file loading times of auth controller module
 
+
+* 2025-08-30 14:02:39 - style: align action button icons vertically in dashboard
+
