@@ -224,3 +224,6 @@
 
 * 2025-08-31 01:58:31 - fix: resolve responsive scaling issue on transaction filters
 
+
+* 2025-08-31 16:34:39 - style: configure focus rings on inputs for profile editor
+
