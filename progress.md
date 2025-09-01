@@ -227,3 +227,6 @@
 
 * 2025-08-31 16:34:39 - style: configure focus rings on inputs for profile editor
 
+
+* 2025-09-01 13:14:04 - fix: resolve responsive scaling issue on import-export tool
+
