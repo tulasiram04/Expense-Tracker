@@ -230,3 +230,6 @@
 
 * 2025-09-01 13:14:04 - fix: resolve responsive scaling issue on import-export tool
 
+
+* 2025-09-02 07:23:54 - feat: add custom error messages inside toast indicators handlers
+
