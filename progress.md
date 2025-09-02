@@ -233,3 +233,6 @@
 
 * 2025-09-02 07:23:54 - feat: add custom error messages inside toast indicators handlers
 
+
+* 2025-09-02 22:32:05 - style: adjust background opacity for glassmorphism on database sync
+
