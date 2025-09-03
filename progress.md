@@ -236,3 +236,6 @@
 
 * 2025-09-02 22:32:05 - style: adjust background opacity for glassmorphism on database sync
 
+
+* 2025-09-03 19:11:30 - style: align action button icons vertically in reports page
+
