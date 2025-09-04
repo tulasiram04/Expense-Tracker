@@ -239,3 +239,6 @@
 
 * 2025-09-03 19:11:30 - style: align action button icons vertically in reports page
 
+
+* 2025-09-04 12:06:33 - style: adjust background opacity for glassmorphism on transaction filters
+
