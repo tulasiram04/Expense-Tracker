@@ -245,3 +245,6 @@
 
 * 2025-09-05 03:04:03 - refactor: remove redundant variable declarations in local storage
 
+
+* 2025-09-05 19:27:02 - fix: clear validation states on modal reset for Supabase API client
+
