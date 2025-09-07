@@ -251,3 +251,6 @@
 
 * 2025-09-06 18:25:21 - fix: clear validation states on modal reset for Supabase API client
 
+
+* 2025-09-07 09:33:33 - feat: add custom error messages inside Supabase API client handlers
+
