@@ -254,3 +254,6 @@
 
 * 2025-09-07 09:33:33 - feat: add custom error messages inside Supabase API client handlers
 
+
+* 2025-09-08 06:12:58 - perf: optimize file loading times of auth controller module
+
