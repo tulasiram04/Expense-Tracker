@@ -266,3 +266,6 @@
 
 * 2025-09-10 14:29:18 - perf: optimize file loading times of local storage module
 
+
+* 2025-09-11 04:33:23 - style: align action button icons vertically in categories manager
+
