@@ -269,3 +269,6 @@
 
 * 2025-09-11 04:33:23 - style: align action button icons vertically in categories manager
 
+
+* 2025-09-11 22:00:29 - fix: prevent null-pointer exceptions in toast indicators when loading
+
