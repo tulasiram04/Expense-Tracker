@@ -275,3 +275,6 @@
 
 * 2025-09-12 13:19:21 - fix: clear validation states on modal reset for budget progress bar
 
+
+* 2025-09-13 04:38:14 - fix: prevent page reload on form submit inside profile editor
+
