@@ -272,3 +272,6 @@
 
 * 2025-09-11 22:00:29 - fix: prevent null-pointer exceptions in toast indicators when loading
 
+
+* 2025-09-12 13:19:21 - fix: clear validation states on modal reset for budget progress bar
+
