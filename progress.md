@@ -278,3 +278,6 @@
 
 * 2025-09-13 04:38:14 - fix: prevent page reload on form submit inside profile editor
 
+
+* 2025-09-14 03:47:14 - fix: prevent page reload on form submit inside transaction filters
+
