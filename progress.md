@@ -281,3 +281,6 @@
 
 * 2025-09-14 03:47:14 - fix: prevent page reload on form submit inside transaction filters
 
+
+* 2025-09-14 20:42:16 - style: adjust background opacity for glassmorphism on local storage
+
