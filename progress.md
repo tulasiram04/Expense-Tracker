@@ -290,3 +290,6 @@
 
 * 2025-09-16 04:45:30 - refactor: remove redundant variable declarations in auth controller
 
+
+* 2025-09-16 17:02:44 - refactor: clean up deprecated helpers in reports page
+
