@@ -293,3 +293,6 @@
 
 * 2025-09-16 17:02:44 - refactor: clean up deprecated helpers in reports page
 
+
+* 2025-09-17 16:54:29 - fix: resolve responsive scaling issue on toast indicators
+
