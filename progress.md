@@ -296,3 +296,6 @@
 
 * 2025-09-17 16:54:29 - fix: resolve responsive scaling issue on toast indicators
 
+
+* 2025-09-18 09:17:28 - feat: add custom error messages inside categories manager handlers
+
