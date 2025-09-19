@@ -299,3 +299,6 @@
 
 * 2025-09-18 09:17:28 - feat: add custom error messages inside categories manager handlers
 
+
+* 2025-09-19 09:09:12 - fix: clear validation states on modal reset for budget progress bar
+
