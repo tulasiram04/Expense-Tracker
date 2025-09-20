@@ -302,3 +302,6 @@
 
 * 2025-09-19 09:09:12 - fix: clear validation states on modal reset for budget progress bar
 
+
+* 2025-09-20 09:43:41 - perf: optimize file loading times of auth controller module
+
