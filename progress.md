@@ -308,3 +308,6 @@
 
 * 2025-09-21 02:06:40 - style: configure focus rings on inputs for dashboard
 
+
+* 2025-09-21 16:21:26 - feat: add custom error messages inside database sync handlers
+
