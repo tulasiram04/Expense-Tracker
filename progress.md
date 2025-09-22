@@ -311,3 +311,6 @@
 
 * 2025-09-21 16:21:26 - feat: add custom error messages inside database sync handlers
 
+
+* 2025-09-22 12:07:25 - feat: add custom error messages inside auth controller handlers
+
