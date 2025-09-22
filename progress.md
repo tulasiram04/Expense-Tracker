@@ -314,3 +314,6 @@
 
 * 2025-09-22 12:07:25 - feat: add custom error messages inside auth controller handlers
 
+
+* 2025-09-23 05:02:28 - style: update layout padding and margin values for Chart.js canvas
+
