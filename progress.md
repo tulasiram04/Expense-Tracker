@@ -317,3 +317,6 @@
 
 * 2025-09-23 05:02:28 - style: update layout padding and margin values for Chart.js canvas
 
+
+* 2025-09-23 16:36:58 - fix: prevent page reload on form submit inside import-export tool
+
