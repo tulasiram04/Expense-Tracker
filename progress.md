@@ -320,3 +320,6 @@
 
 * 2025-09-23 16:36:58 - fix: prevent page reload on form submit inside import-export tool
 
+
+* 2025-09-24 13:27:04 - refactor: clean up deprecated helpers in import-export tool
+
