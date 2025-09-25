@@ -323,3 +323,6 @@
 
 * 2025-09-24 13:27:04 - refactor: clean up deprecated helpers in import-export tool
 
+
+* 2025-09-25 06:32:47 - fix: prevent page reload on form submit inside categories manager
+
