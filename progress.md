@@ -326,3 +326,6 @@
 
 * 2025-09-25 06:32:47 - fix: prevent page reload on form submit inside categories manager
 
+
+* 2025-09-25 17:56:36 - refactor: optimize rendering logic of local storage
+
