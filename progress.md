@@ -329,3 +329,6 @@
 
 * 2025-09-25 17:56:36 - refactor: optimize rendering logic of local storage
 
+
+* 2025-09-26 13:42:35 - feat: add custom error messages inside Chart.js canvas handlers
+
