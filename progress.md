@@ -338,3 +338,6 @@
 
 * 2025-09-28 08:16:13 - refactor: remove redundant variable declarations in settings view
 
+
+* 2025-09-28 20:22:46 - fix: prevent page reload on form submit inside dashboard
+
