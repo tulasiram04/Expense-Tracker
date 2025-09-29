@@ -341,3 +341,6 @@
 
 * 2025-09-28 20:22:46 - fix: prevent page reload on form submit inside dashboard
 
+
+* 2025-09-29 16:19:27 - perf: optimize file loading times of Chart.js canvas module
+
