@@ -347,3 +347,6 @@
 
 * 2025-09-30 09:46:32 - style: configure focus rings on inputs for navigation shell
 
+
+* 2025-10-01 04:17:44 - feat: add tooltip hints to Supabase API client
+
