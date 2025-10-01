@@ -350,3 +350,6 @@
 
 * 2025-10-01 04:17:44 - feat: add tooltip hints to Supabase API client
 
+
+* 2025-10-01 22:27:34 - refactor: clean up deprecated helpers in auth controller
+
