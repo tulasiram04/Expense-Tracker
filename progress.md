@@ -353,3 +353,6 @@
 
 * 2025-10-01 22:27:34 - refactor: clean up deprecated helpers in auth controller
 
+
+* 2025-10-02 21:25:53 - refactor: optimize rendering logic of Chart.js canvas
+
