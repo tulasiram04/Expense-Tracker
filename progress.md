@@ -356,3 +356,6 @@
 
 * 2025-10-02 21:25:53 - refactor: optimize rendering logic of Chart.js canvas
 
+
+* 2025-10-03 14:52:59 - style: adjust background opacity for glassmorphism on navigation shell
+
