@@ -365,3 +365,6 @@
 
 * 2025-10-05 11:45:30 - feat: add custom error messages inside categories manager handlers
 
+
+* 2025-10-06 10:54:30 - fix: prevent page reload on form submit inside transaction filters
+
