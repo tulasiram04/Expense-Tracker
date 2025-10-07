@@ -368,3 +368,6 @@
 
 * 2025-10-06 10:54:30 - fix: prevent page reload on form submit inside transaction filters
 
+
+* 2025-10-08 01:33:04 - style: adjust background opacity for glassmorphism on profile editor
+
