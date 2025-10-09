@@ -374,3 +374,6 @@
 
 * 2025-10-09 00:10:00 - style: update layout padding and margin values for auth controller
 
+
+* 2025-10-09 22:36:16 - fix: clear validation states on modal reset for reports page
+
