@@ -380,3 +380,6 @@
 
 * 2025-10-10 09:28:02 - feat: add custom error messages inside dashboard handlers
 
+
+* 2025-10-10 20:19:47 - style: update layout padding and margin values for import-export tool
+
