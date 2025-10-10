@@ -377,3 +377,6 @@
 
 * 2025-10-09 22:36:16 - fix: clear validation states on modal reset for reports page
 
+
+* 2025-10-10 09:28:02 - feat: add custom error messages inside dashboard handlers
+
