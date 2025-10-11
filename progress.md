@@ -383,3 +383,6 @@
 
 * 2025-10-10 20:19:47 - style: update layout padding and margin values for import-export tool
 
+
+* 2025-10-11 16:48:31 - fix: resolve responsive scaling issue on local storage
+
