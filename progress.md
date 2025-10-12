@@ -386,3 +386,6 @@
 
 * 2025-10-11 16:48:31 - fix: resolve responsive scaling issue on local storage
 
+
+* 2025-10-12 11:19:43 - refactor: optimize rendering logic of auth controller
+
