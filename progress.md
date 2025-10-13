@@ -389,3 +389,6 @@
 
 * 2025-10-12 11:19:43 - refactor: optimize rendering logic of auth controller
 
+
+* 2025-10-13 06:55:02 - fix: clear validation states on modal reset for dashboard
+
