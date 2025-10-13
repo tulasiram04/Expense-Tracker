@@ -392,3 +392,6 @@
 
 * 2025-10-13 06:55:02 - fix: clear validation states on modal reset for dashboard
 
+
+* 2025-10-14 04:59:55 - refactor: optimize rendering logic of reports page
+
