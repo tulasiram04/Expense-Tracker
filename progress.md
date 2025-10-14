@@ -395,3 +395,6 @@
 
 * 2025-10-14 04:59:55 - refactor: optimize rendering logic of reports page
 
+
+* 2025-10-14 20:08:07 - refactor: optimize rendering logic of transaction filters
+
