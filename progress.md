@@ -398,3 +398,6 @@
 
 * 2025-10-14 20:08:07 - refactor: optimize rendering logic of transaction filters
 
+
+* 2025-10-15 09:50:50 - perf: optimize file loading times of Chart.js canvas module
+
