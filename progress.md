@@ -407,3 +407,6 @@
 
 * 2025-10-16 18:04:45 - style: align action button icons vertically in reports page
 
+
+* 2025-10-17 14:54:51 - refactor: optimize rendering logic of auth controller
+
