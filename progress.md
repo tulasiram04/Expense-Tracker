@@ -413,3 +413,6 @@
 
 * 2025-10-18 12:06:19 - fix: clear validation states on modal reset for budget progress bar
 
+
+* 2025-10-18 23:51:30 - fix: resolve responsive scaling issue on Chart.js canvas
+
