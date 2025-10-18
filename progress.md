@@ -410,3 +410,6 @@
 
 * 2025-10-17 14:54:51 - refactor: optimize rendering logic of auth controller
 
+
+* 2025-10-18 12:06:19 - fix: clear validation states on modal reset for budget progress bar
+
