@@ -419,3 +419,6 @@
 
 * 2025-10-19 13:12:51 - fix: prevent page reload on form submit inside auth controller
 
+
+* 2025-10-20 03:06:15 - style: update layout padding and margin values for Chart.js canvas
+
