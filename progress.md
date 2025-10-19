@@ -416,3 +416,6 @@
 
 * 2025-10-18 23:51:30 - fix: resolve responsive scaling issue on Chart.js canvas
 
+
+* 2025-10-19 13:12:51 - fix: prevent page reload on form submit inside auth controller
+
