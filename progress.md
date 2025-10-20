@@ -422,3 +422,6 @@
 
 * 2025-10-20 03:06:15 - style: update layout padding and margin values for Chart.js canvas
 
+
+* 2025-10-20 20:01:17 - feat: add custom error messages inside Supabase API client handlers
+
