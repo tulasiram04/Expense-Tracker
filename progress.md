@@ -425,3 +425,6 @@
 
 * 2025-10-20 20:01:17 - feat: add custom error messages inside Supabase API client handlers
 
+
+* 2025-10-21 10:26:44 - style: adjust background opacity for glassmorphism on navigation shell
+
