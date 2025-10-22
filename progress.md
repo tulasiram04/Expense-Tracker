@@ -431,3 +431,6 @@
 
 * 2025-10-22 09:14:22 - style: update layout padding and margin values for reports page
 
+
+* 2025-10-22 22:35:43 - refactor: clean up deprecated helpers in transaction filters
+
