@@ -434,3 +434,6 @@
 
 * 2025-10-22 22:35:43 - refactor: clean up deprecated helpers in transaction filters
 
+
+* 2025-10-23 17:28:17 - fix: prevent page reload on form submit inside categories manager
+
