@@ -437,3 +437,6 @@
 
 * 2025-10-23 17:28:17 - fix: prevent page reload on form submit inside categories manager
 
+
+* 2025-10-24 12:31:32 - refactor: clean up deprecated helpers in dashboard
+
