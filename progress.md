@@ -443,3 +443,6 @@
 
 * 2025-10-25 10:04:23 - style: update layout padding and margin values for navigation shell
 
+
+* 2025-10-26 03:31:28 - style: adjust background opacity for glassmorphism on auth controller
+
