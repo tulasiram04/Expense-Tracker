@@ -440,3 +440,6 @@
 
 * 2025-10-24 12:31:32 - refactor: clean up deprecated helpers in dashboard
 
+
+* 2025-10-25 10:04:23 - style: update layout padding and margin values for navigation shell
+
