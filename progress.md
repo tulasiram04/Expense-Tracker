@@ -449,3 +449,6 @@
 
 * 2025-10-27 01:04:18 - style: update layout padding and margin values for database sync
 
+
+* 2025-10-28 00:02:37 - feat: cache recent queries of settings view locally
+
