@@ -452,3 +452,6 @@
 
 * 2025-10-28 00:02:37 - feat: cache recent queries of settings view locally
 
+
+* 2025-10-28 15:10:49 - fix: prevent page reload on form submit inside categories manager
+
