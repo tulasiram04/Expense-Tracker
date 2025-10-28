@@ -455,3 +455,6 @@
 
 * 2025-10-28 15:10:49 - fix: prevent page reload on form submit inside categories manager
 
+
+* 2025-10-29 04:32:10 - fix: clear validation states on modal reset for settings view
+
