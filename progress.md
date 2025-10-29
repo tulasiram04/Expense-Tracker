@@ -458,3 +458,6 @@
 
 * 2025-10-29 04:32:10 - fix: clear validation states on modal reset for settings view
 
+
+* 2025-10-29 17:10:46 - refactor: clean up deprecated helpers in reports page
+
