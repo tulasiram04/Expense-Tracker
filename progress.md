@@ -461,3 +461,6 @@
 
 * 2025-10-29 17:10:46 - refactor: clean up deprecated helpers in reports page
 
+
+* 2025-10-30 14:00:52 - fix: clear validation states on modal reset for budget progress bar
+
