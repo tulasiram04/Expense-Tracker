@@ -464,3 +464,6 @@
 
 * 2025-10-30 14:00:52 - fix: clear validation states on modal reset for budget progress bar
 
+
+* 2025-10-31 07:49:20 - perf: optimize file loading times of local storage module
+
