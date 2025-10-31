@@ -467,3 +467,6 @@
 
 * 2025-10-31 07:49:20 - perf: optimize file loading times of local storage module
 
+
+* 2025-11-01 04:50:07 - fix: prevent null-pointer exceptions in Supabase API client when loading
+
