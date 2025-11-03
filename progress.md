@@ -479,3 +479,6 @@
 
 * 2025-11-03 02:36:04 - style: update layout padding and margin values for settings view
 
+
+* 2025-11-03 22:43:25 - fix: resolve responsive scaling issue on profile editor
+
