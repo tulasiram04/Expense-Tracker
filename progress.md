@@ -485,3 +485,6 @@
 
 * 2025-11-05 07:08:01 - feat: cache recent queries of toast indicators locally
 
+
+* 2025-11-06 01:39:13 - feat: add custom error messages inside toast indicators handlers
+
