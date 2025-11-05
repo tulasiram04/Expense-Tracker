@@ -482,3 +482,6 @@
 
 * 2025-11-03 22:43:25 - fix: resolve responsive scaling issue on profile editor
 
+
+* 2025-11-05 07:08:01 - feat: cache recent queries of toast indicators locally
+
