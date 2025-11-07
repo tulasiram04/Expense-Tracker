@@ -491,3 +491,6 @@
 
 * 2025-11-06 23:54:48 - feat: cache recent queries of settings view locally
 
+
+* 2025-11-07 13:48:12 - refactor: clean up deprecated helpers in import-export tool
+
