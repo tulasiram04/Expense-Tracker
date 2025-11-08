@@ -494,3 +494,6 @@
 
 * 2025-11-07 13:48:12 - refactor: clean up deprecated helpers in import-export tool
 
+
+* 2025-11-08 13:18:34 - refactor: remove redundant variable declarations in navigation shell
+
