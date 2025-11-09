@@ -497,3 +497,6 @@
 
 * 2025-11-08 13:18:34 - refactor: remove redundant variable declarations in navigation shell
 
+
+* 2025-11-09 12:06:12 - feat: add tooltip hints to settings view
+
