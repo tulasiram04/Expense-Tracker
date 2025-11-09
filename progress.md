@@ -500,3 +500,6 @@
 
 * 2025-11-09 12:06:12 - feat: add tooltip hints to settings view
 
+
+* 2025-11-10 05:22:36 - style: adjust background opacity for glassmorphism on settings view
+
