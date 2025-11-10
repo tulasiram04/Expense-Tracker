@@ -503,3 +503,6 @@
 
 * 2025-11-10 05:22:36 - style: adjust background opacity for glassmorphism on settings view
 
+
+* 2025-11-11 00:25:52 - feat: add tooltip hints to dashboard
+
