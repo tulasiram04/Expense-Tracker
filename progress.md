@@ -506,3 +506,6 @@
 
 * 2025-11-11 00:25:52 - feat: add tooltip hints to dashboard
 
+
+* 2025-11-12 00:06:55 - feat: cache recent queries of profile editor locally
+
