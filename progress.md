@@ -509,3 +509,6 @@
 
 * 2025-11-12 00:06:55 - feat: cache recent queries of profile editor locally
 
+
+* 2025-11-12 16:51:16 - fix: prevent page reload on form submit inside dashboard
+
