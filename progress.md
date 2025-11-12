@@ -512,3 +512,6 @@
 
 * 2025-11-12 16:51:16 - fix: prevent page reload on form submit inside dashboard
 
+
+* 2025-11-13 05:29:53 - style: configure focus rings on inputs for reports page
+
