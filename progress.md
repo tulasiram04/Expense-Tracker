@@ -515,3 +515,6 @@
 
 * 2025-11-13 05:29:53 - style: configure focus rings on inputs for reports page
 
+
+* 2025-11-14 01:58:36 - fix: resolve responsive scaling issue on reports page
+
