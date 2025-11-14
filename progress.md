@@ -518,3 +518,6 @@
 
 * 2025-11-14 01:58:36 - fix: resolve responsive scaling issue on reports page
 
+
+* 2025-11-14 18:42:58 - fix: prevent null-pointer exceptions in auth controller when loading
+
