@@ -521,3 +521,6 @@
 
 * 2025-11-14 18:42:58 - fix: prevent null-pointer exceptions in auth controller when loading
 
+
+* 2025-11-15 10:44:35 - style: adjust background opacity for glassmorphism on navigation shell
+
