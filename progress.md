@@ -524,3 +524,6 @@
 
 * 2025-11-15 10:44:35 - style: adjust background opacity for glassmorphism on navigation shell
 
+
+* 2025-11-16 04:00:59 - feat: cache recent queries of reports page locally
+
