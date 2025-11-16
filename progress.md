@@ -527,3 +527,6 @@
 
 * 2025-11-16 04:00:59 - feat: cache recent queries of reports page locally
 
+
+* 2025-11-16 17:11:39 - feat: add tooltip hints to import-export tool
+
