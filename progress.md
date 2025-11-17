@@ -530,3 +530,6 @@
 
 * 2025-11-16 17:11:39 - feat: add tooltip hints to import-export tool
 
+
+* 2025-11-17 09:23:57 - style: adjust background opacity for glassmorphism on import-export tool
+
