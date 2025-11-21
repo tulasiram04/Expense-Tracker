@@ -533,3 +533,6 @@
 
 * 2025-11-17 09:23:57 - style: adjust background opacity for glassmorphism on import-export tool
 
+
+* 2025-11-21 11:41:51 - refactor: remove redundant variable declarations in toast indicators
+
