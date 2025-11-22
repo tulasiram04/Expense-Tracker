@@ -536,3 +536,6 @@
 
 * 2025-11-21 11:41:51 - refactor: remove redundant variable declarations in toast indicators
 
+
+* 2025-11-22 11:54:58 - fix: resolve responsive scaling issue on auth controller
+
