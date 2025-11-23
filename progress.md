@@ -542,3 +542,6 @@
 
 * 2025-11-23 06:58:13 - fix: clear validation states on modal reset for Chart.js canvas
 
+
+* 2025-11-23 20:08:53 - fix: prevent null-pointer exceptions in database sync when loading
+
