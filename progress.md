@@ -539,3 +539,6 @@
 
 * 2025-11-22 11:54:58 - fix: resolve responsive scaling issue on auth controller
 
+
+* 2025-11-23 06:58:13 - fix: clear validation states on modal reset for Chart.js canvas
+
