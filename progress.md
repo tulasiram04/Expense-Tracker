@@ -545,3 +545,6 @@
 
 * 2025-11-23 20:08:53 - fix: prevent null-pointer exceptions in database sync when loading
 
+
+* 2025-11-24 09:30:13 - feat: cache recent queries of Chart.js canvas locally
+
