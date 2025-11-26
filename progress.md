@@ -554,3 +554,6 @@
 
 * 2025-11-25 15:03:52 - style: configure focus rings on inputs for settings view
 
+
+* 2025-11-26 09:35:04 - style: configure focus rings on inputs for import-export tool
+
