@@ -560,3 +560,6 @@
 
 * 2025-11-27 07:29:17 - style: configure focus rings on inputs for toast indicators
 
+
+* 2025-11-28 03:25:57 - fix: prevent null-pointer exceptions in Supabase API client when loading
+
