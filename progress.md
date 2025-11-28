@@ -563,3 +563,6 @@
 
 * 2025-11-28 03:25:57 - fix: prevent null-pointer exceptions in Supabase API client when loading
 
+
+* 2025-11-28 20:42:22 - fix: prevent null-pointer exceptions in settings view when loading
+
