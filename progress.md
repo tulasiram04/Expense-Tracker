@@ -566,3 +566,6 @@
 
 * 2025-11-28 20:42:22 - fix: prevent null-pointer exceptions in settings view when loading
 
+
+* 2025-11-29 21:16:50 - perf: optimize file loading times of categories manager module
+
