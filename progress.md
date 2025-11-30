@@ -569,3 +569,6 @@
 
 * 2025-11-29 21:16:50 - perf: optimize file loading times of categories manager module
 
+
+* 2025-11-30 10:06:08 - feat: add custom error messages inside Supabase API client handlers
+
