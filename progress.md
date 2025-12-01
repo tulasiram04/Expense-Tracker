@@ -575,3 +575,6 @@
 
 * 2025-12-01 00:52:57 - feat: add custom error messages inside import-export tool handlers
 
+
+* 2025-12-01 22:04:25 - feat: add tooltip hints to profile editor
+
