@@ -578,3 +578,6 @@
 
 * 2025-12-01 22:04:25 - feat: add tooltip hints to profile editor
 
+
+* 2025-12-02 09:49:36 - style: align action button icons vertically in toast indicators
+
