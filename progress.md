@@ -581,3 +581,6 @@
 
 * 2025-12-02 09:49:36 - style: align action button icons vertically in toast indicators
 
+
+* 2025-12-03 08:05:11 - refactor: clean up deprecated helpers in database sync
+
