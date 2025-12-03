@@ -584,3 +584,6 @@
 
 * 2025-12-03 08:05:11 - refactor: clean up deprecated helpers in database sync
 
+
+* 2025-12-04 00:06:48 - feat: cache recent queries of categories manager locally
+
