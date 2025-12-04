@@ -587,3 +587,6 @@
 
 * 2025-12-04 00:06:48 - feat: cache recent queries of categories manager locally
 
+
+* 2025-12-04 14:32:15 - style: adjust background opacity for glassmorphism on settings view
+
