@@ -593,3 +593,6 @@
 
 * 2025-12-05 15:17:25 - fix: clear validation states on modal reset for transaction filters
 
+
+* 2025-12-06 05:10:49 - style: align action button icons vertically in budget progress bar
+
