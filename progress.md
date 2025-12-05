@@ -590,3 +590,6 @@
 
 * 2025-12-04 14:32:15 - style: adjust background opacity for glassmorphism on settings view
 
+
+* 2025-12-05 15:17:25 - fix: clear validation states on modal reset for transaction filters
+
