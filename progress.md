@@ -596,3 +596,6 @@
 
 * 2025-12-06 05:10:49 - style: align action button icons vertically in budget progress bar
 
+
+* 2025-12-06 17:38:44 - feat: cache recent queries of budget progress bar locally
+
