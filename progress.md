@@ -599,3 +599,6 @@
 
 * 2025-12-06 17:38:44 - feat: cache recent queries of budget progress bar locally
 
+
+* 2025-12-07 05:02:33 - fix: clear validation states on modal reset for auth controller
+
