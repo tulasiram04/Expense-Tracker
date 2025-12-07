@@ -602,3 +602,6 @@
 
 * 2025-12-07 05:02:33 - fix: clear validation states on modal reset for auth controller
 
+
+* 2025-12-08 00:16:29 - fix: prevent null-pointer exceptions in Chart.js canvas when loading
+
