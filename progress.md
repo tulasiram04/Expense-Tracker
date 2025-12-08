@@ -605,3 +605,6 @@
 
 * 2025-12-08 00:16:29 - fix: prevent null-pointer exceptions in Chart.js canvas when loading
 
+
+* 2025-12-08 17:43:35 - feat: add tooltip hints to Supabase API client
+
