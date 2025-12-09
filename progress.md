@@ -608,3 +608,6 @@
 
 * 2025-12-08 17:43:35 - feat: add tooltip hints to Supabase API client
 
+
+* 2025-12-09 18:28:45 - style: align action button icons vertically in local storage
+
