@@ -611,3 +611,6 @@
 
 * 2025-12-09 18:28:45 - style: align action button icons vertically in local storage
 
+
+* 2025-12-10 11:13:06 - fix: prevent page reload on form submit inside reports page
+
