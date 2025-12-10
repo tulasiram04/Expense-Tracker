@@ -614,3 +614,6 @@
 
 * 2025-12-10 11:13:06 - fix: prevent page reload on form submit inside reports page
 
+
+* 2025-12-11 02:10:36 - fix: prevent page reload on form submit inside categories manager
+
