@@ -617,3 +617,6 @@
 
 * 2025-12-11 02:10:36 - fix: prevent page reload on form submit inside categories manager
 
+
+* 2025-12-12 00:04:49 - feat: cache recent queries of database sync locally
+
