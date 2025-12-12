@@ -620,3 +620,6 @@
 
 * 2025-12-12 00:04:49 - feat: cache recent queries of database sync locally
 
+
+* 2025-12-12 12:11:22 - fix: resolve responsive scaling issue on Supabase API client
+
