@@ -629,3 +629,6 @@
 
 * 2025-12-14 06:34:18 - style: configure focus rings on inputs for categories manager
 
+
+* 2025-12-14 22:57:17 - fix: prevent null-pointer exceptions in database sync when loading
+
