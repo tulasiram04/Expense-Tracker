@@ -626,3 +626,6 @@
 
 * 2025-12-13 06:31:53 - perf: optimize file loading times of Chart.js canvas module
 
+
+* 2025-12-14 06:34:18 - style: configure focus rings on inputs for categories manager
+
