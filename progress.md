@@ -632,3 +632,6 @@
 
 * 2025-12-14 22:57:17 - fix: prevent null-pointer exceptions in database sync when loading
 
+
+* 2025-12-15 11:35:54 - refactor: remove redundant variable declarations in budget progress bar
+
