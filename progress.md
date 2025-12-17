@@ -641,3 +641,6 @@
 
 * 2025-12-17 10:58:00 - style: adjust background opacity for glassmorphism on profile editor
 
+
+* 2025-12-18 04:25:06 - perf: optimize file loading times of Chart.js canvas module
+
