@@ -650,3 +650,6 @@
 
 * 2025-12-19 12:49:42 - refactor: optimize rendering logic of categories manager
 
+
+* 2025-12-20 02:00:22 - fix: prevent null-pointer exceptions in profile editor when loading
+
