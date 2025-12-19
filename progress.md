@@ -647,3 +647,6 @@
 
 * 2025-12-18 16:31:39 - style: update layout padding and margin values for auth controller
 
+
+* 2025-12-19 12:49:42 - refactor: optimize rendering logic of categories manager
+
