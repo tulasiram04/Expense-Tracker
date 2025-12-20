@@ -653,3 +653,6 @@
 
 * 2025-12-20 02:00:22 - fix: prevent null-pointer exceptions in profile editor when loading
 
+
+* 2025-12-20 23:54:34 - style: adjust background opacity for glassmorphism on categories manager
+
