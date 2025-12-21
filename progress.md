@@ -656,3 +656,6 @@
 
 * 2025-12-20 23:54:34 - style: adjust background opacity for glassmorphism on categories manager
 
+
+* 2025-12-21 20:44:40 - style: adjust background opacity for glassmorphism on categories manager
+
