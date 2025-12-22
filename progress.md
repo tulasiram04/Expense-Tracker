@@ -659,3 +659,6 @@
 
 * 2025-12-21 20:44:40 - style: adjust background opacity for glassmorphism on categories manager
 
+
+* 2025-12-22 15:47:55 - style: align action button icons vertically in profile editor
+
