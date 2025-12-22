@@ -662,3 +662,6 @@
 
 * 2025-12-22 15:47:55 - style: align action button icons vertically in profile editor
 
+
+* 2025-12-23 03:33:06 - fix: clear validation states on modal reset for auth controller
+
