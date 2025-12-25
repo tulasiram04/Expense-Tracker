@@ -671,3 +671,6 @@
 
 * 2025-12-24 10:53:36 - style: update layout padding and margin values for reports page
 
+
+* 2025-12-25 05:35:29 - perf: optimize file loading times of Chart.js canvas module
+
