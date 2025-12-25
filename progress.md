@@ -674,3 +674,6 @@
 
 * 2025-12-25 05:35:29 - perf: optimize file loading times of Chart.js canvas module
 
+
+* 2025-12-25 18:46:09 - fix: prevent page reload on form submit inside navigation shell
+
