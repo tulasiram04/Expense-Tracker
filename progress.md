@@ -677,3 +677,6 @@
 
 * 2025-12-25 18:46:09 - fix: prevent page reload on form submit inside navigation shell
 
+
+* 2025-12-26 06:09:58 - style: adjust background opacity for glassmorphism on budget progress bar
+
