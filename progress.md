@@ -680,3 +680,6 @@
 
 * 2025-12-26 06:09:58 - style: adjust background opacity for glassmorphism on budget progress bar
 
+
+* 2025-12-27 02:49:23 - fix: clear validation states on modal reset for settings view
+
