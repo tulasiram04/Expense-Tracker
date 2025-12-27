@@ -683,3 +683,6 @@
 
 * 2025-12-27 02:49:23 - fix: clear validation states on modal reset for settings view
 
+
+* 2025-12-28 02:30:26 - fix: clear validation states on modal reset for settings view
+
