@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Register - My Expense Tracker</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase CDN Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- App Shell for Auth -->
+  <div class="auth-shell">
+    <div style="text-align: center; margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+      <div style="width: 60px; height: 60px; border-radius: var(--radius-lg); background: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 28px;">
+        <i class="fa-solid fa-user-plus"></i>
+      </div>
+      <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main);">Create Account</h2>
+      <p style="font-size: 13px; color: var(--text-muted);">Manage your personal finance securely</p>
+    </div>
+
+    <!-- Register Form -->
+    <form id="register-form">
+      <div class="input-group">
+        <label class="input-label" for="reg-name">Full Name</label>
+        <div class="input-field-icon">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" id="reg-name" class="input-field" placeholder="John Doe" required autocomplete="name">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="reg-email">Email Address</label>
+        <div class="input-field-icon">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" id="reg-email" class="input-field" placeholder="name@domain.com" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="reg-password">Password</label>
+        <div class="input-field-icon">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="reg-password" class="input-field" placeholder="At least 6 characters" required autocomplete="new-password">
+        </div>
+      </div>
+
+      <div class="input-group" style="margin-bottom: 24px;">
+        <label class="input-label" for="reg-confirm">Confirm Password</label>
+        <div class="input-field-icon">
+          <i class="fa-solid fa-shield"></i>
+          <input type="password" id="reg-confirm" class="input-field" placeholder="Re-type password" required autocomplete="new-password">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="reg-submit-btn">
+        <i class="fa-solid fa-user-plus"></i> Create Account
+      </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 25px; font-size: 13px; color: var(--text-muted);">
+      Already have an account? <a href="login.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Sign in here</a>
+    </div>
+  </div>
+
+  <!-- Dynamic Supabase Credentials Connection Overlay -->
+  <script type="module" src="js/supabase-config.js"></script>
+  <!-- Authentication logic -->
+  <script type="module" src="js/auth.js"></script>
+
+  <!-- Page Logic script -->
+  <script type="module">
+    import { registerUser } from './js/auth.js';
+    import { showToast } from './js/ui.js';
+
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const confirmPassword = document.getElementById('reg-confirm').value;
+      const submitBtn = document.getElementById('reg-submit-btn');
+
+      // Validation
+      if (password.length < 6) {
+        showToast('Password must be at least 6 characters long.', 'warning');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showToast('Passwords do not match. Please retype them.', 'warning');
+        return;
+      }
+
+      // Change button state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...`;
+
+      try {
+        await registerUser(email, password, name);
+        showToast('Registration successful! Check email to verify or login directly.', 'success');
+        
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 2000);
+      } catch (err) {
+        console.error(err);
+        showToast(err.message || 'Error occurred during registration. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fa-solid fa-user-plus"></i> Create Account`;
+      }
+    });
+  </script>
+</body>
+</html>

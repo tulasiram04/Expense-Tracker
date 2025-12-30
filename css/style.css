@@ -1,0 +1,1386 @@
+/* My Expense Tracker - Premium Mobile-First Light Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #2563EB;
+  --primary-light: #EFF6FF;
+  --primary-dark: #1D4ED8;
+  --success-color: #22C55E;
+  --success-light: #F0FDF4;
+  --danger-color: #EF4444;
+  --danger-light: #FEF2F2;
+  --warning-color: #F59E0B;
+  --warning-light: #FEFBEB;
+  
+  --bg-color: #F8FAFC;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: rgba(255, 255, 255, 0.6);
+  --border-color: #E2E8F0;
+  
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-primary: 0 8px 20px -4px rgba(37, 99, 235, 0.35);
+  
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* =========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  font-family: var(--font-main);
+  background-color: #F1F5F9; /* Desktop environment background */
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: scroll;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
+
+/* =========================================================================
+   2. APP SHELL LAYOUT (Mobile Aspect Ratio Enforcer)
+   ========================================================================= */
+.app-shell {
+  width: 100%;
+  max-width: 480px; /* Standard phone width */
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Main Content scrollable area */
+.app-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px 90px 20px; /* Extra padding bottom for bottom nav and FAB */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Fullscreen overlays/pages (like login/register) */
+.auth-shell {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #EFF6FF 0%, #FFFFFF 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* =========================================================================
+   3. BOTTOM NAV BAR & FLOATING ACTION BUTTON (FAB)
+   ========================================================================= */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(15, 23, 42, 0.03);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  width: 60px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  transition: var(--transition-smooth);
+}
+
+.nav-item i {
+  font-size: 18px;
+  margin-bottom: 4px;
+  transition: var(--transition-bounce);
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+}
+
+.nav-item.active i {
+  transform: translateY(-2px);
+  font-size: 20px;
+}
+
+.nav-item:active i {
+  transform: scale(0.9);
+}
+
+/* Floating Action Button (FAB) */
+.fab-btn {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 56px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-primary);
+  border: 4px solid var(--bg-color);
+  font-size: 20px;
+  z-index: 101;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.fab-btn:hover, .fab-btn:focus {
+  transform: translateX(-50%) scale(1.08);
+  background: var(--primary-dark);
+}
+
+.fab-btn:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* =========================================================================
+   4. HEADER COMPONENTS
+   ========================================================================= */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0 5px 0;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.user-avatar-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--primary-light);
+  border: 2px solid white;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-avatar-placeholder {
+  font-size: 16px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.user-welcome {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-welcome span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.user-welcome h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.header-action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.header-action-btn:active {
+  transform: scale(0.92);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--danger-color);
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+/* =========================================================================
+   5. GLASSMORPHISM & CARD SYSTEM
+   ========================================================================= */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Primary Gradient Card (Balance Card) */
+.balance-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #4F46E5 100%);
+  color: white;
+  padding: 25px 20px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-primary);
+  position: relative;
+}
+
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.balance-card-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.balance-card-amount {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  animation: scaleUp 0.3s ease-out;
+}
+
+.balance-stats-row {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.balance-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.balance-stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.balance-stat-icon.income {
+  color: #86EFAC;
+}
+
+.balance-stat-icon.expense {
+  color: #FCA5A5;
+}
+
+.balance-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.balance-stat-info span {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.balance-stat-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Horizontal Accounts Slider (Sticky Card Row) */
+.accounts-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 5px;
+  scrollbar-width: none; /* Hide standard scrollbar */
+}
+
+.accounts-container::-webkit-scrollbar {
+  display: none; /* Hide chrome/safari scrollbar */
+}
+
+.account-mini-card {
+  flex: 0 0 130px;
+  scroll-snap-align: start;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.account-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.account-mini-card.iob .account-icon {
+  background: #EFF6FF;
+  color: #1E40AF;
+}
+
+.account-mini-card.jio .account-icon {
+  background: #FDF2F8;
+  color: #BE185D;
+}
+
+.account-mini-card.cash .account-icon {
+  background: #ECFDF5;
+  color: #047857;
+}
+
+.account-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.account-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* =========================================================================
+   6. TRANSACTION ITEMS
+   ========================================================================= */
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.section-link {
+  font-size: 12px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.transaction-item:active {
+  transform: scale(0.98);
+  background-color: var(--primary-light);
+}
+
+.transaction-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0; /* truncate text inside */
+}
+
+.category-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.transaction-desc {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.transaction-source-tag {
+  background: #E2E8F0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.transaction-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.transaction-amount {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.transaction-amount.income {
+  color: var(--success-color);
+}
+
+.transaction-amount.expense {
+  color: var(--text-main);
+}
+
+/* =========================================================================
+   7. BUDGET PROGRESS BARS
+   ========================================================================= */
+.budget-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.budget-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.budget-name-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget-category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.budget-stats {
+  color: var(--text-muted);
+}
+
+.budget-spent {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+.progress-bar.green {
+  background: var(--success-color);
+}
+
+.progress-bar.yellow {
+  background: var(--warning-color);
+}
+
+.progress-bar.red {
+  background: var(--danger-color);
+  animation: pulseWarning 1.5s infinite alternate;
+}
+
+/* =========================================================================
+   8. INPUTS, BUTTONS & FORMS
+   ========================================================================= */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  font-family: var(--font-main);
+  font-size: 14px;
+  color: var(--text-main);
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.input-field-icon {
+  position: relative;
+}
+
+.input-field-icon i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.input-field-icon .input-field {
+  padding-left: 45px;
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition-bounce);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--primary-dark);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  background: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: white;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger:active {
+  transform: scale(0.97);
+}
+
+.btn-outline {
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-main);
+}
+
+/* Button Group (2-column layout) */
+.btn-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Switch styling */
+.switch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.switch-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.switch-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.switch-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-color);
+  border-radius: 34px;
+  transition: var(--transition-smooth);
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: var(--success-color);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+/* =========================================================================
+   9. MODALS & POP-UPS
+   ========================================================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end; /* Drawer slide from bottom on mobile */
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg-color);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 25px 20px;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-color);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* =========================================================================
+   10. TOAST NOTIFICATIONS & CONFIRM DIALOGS
+   ========================================================================= */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 400px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+  animation: toastIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 4px solid var(--primary-color);
+}
+
+.toast.success {
+  border-left-color: var(--success-color);
+}
+
+.toast.error {
+  border-left-color: var(--danger-color);
+}
+
+.toast.warning {
+  border-left-color: var(--warning-color);
+}
+
+.toast-message {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* Custom Confirmation Dialog */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.dialog-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dialog-box {
+  width: 100%;
+  max-width: 380px;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.9);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dialog-overlay.active .dialog-box {
+  transform: scale(1);
+}
+
+.dialog-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dialog-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* =========================================================================
+   11. SKELETON LOADERS & EMPTY STATES
+   ========================================================================= */
+.skeleton {
+  background: linear-gradient(90deg, #E2E8F0 25%, #F1F5F9 50%, #E2E8F0 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 80%;
+  margin-bottom: 8px;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeleton-card {
+  height: 100px;
+  border-radius: var(--radius-md);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  gap: 12px;
+}
+
+.empty-state i {
+  font-size: 48px;
+  color: var(--text-light);
+}
+
+.empty-state h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.empty-state p {
+  font-size: 12px;
+  max-width: 240px;
+}
+
+/* =========================================================================
+   12. SUPABASE INITIAL CREDENTIALS SETUP POP-UP
+   ========================================================================= */
+.setup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 99999; /* Higher than everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.setup-box {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.setup-logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.setup-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.setup-desc a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* =========================================================================
+   13. CUSTOM ANIMATIONS
+   ========================================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translate(-50%, -20px) scale(0.9); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes pulseWarning {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  100% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* =========================================================================
+   14. FILTER CHIPS & STATS STYLING
+   ========================================================================= */
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.filter-chips::-webkit-scrollbar {
+  display: none;
+}
+.chip {
+  flex: 0 0 auto;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--border-color);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.chip.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.stats-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mini-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.mini-stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* =========================================================================
+   15. COLOR THEMES OVERWRITE
+   ========================================================================= */
+/* Custom inline coloring for dynamic theme settings */
+.theme-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  border: 2px solid transparent;
+}
+.theme-dot.active {
+  border-color: var(--text-main);
+  transform: scale(1.1);
+}
+
+/* Active Category Grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.category-select-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.category-select-item .icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  transition: var(--transition-bounce);
+  border: 2px solid transparent;
+}
+
+.category-select-item.active .icon-box {
+  transform: scale(1.1);
+  border-color: var(--text-main);
+  box-shadow: var(--shadow-md);
+}
+
+.category-select-item span {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* =========================================================================
+   16. CUSTOM PREMIUM SELECT DROPDOWNS
+   ========================================================================= */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  user-select: none;
+}
+
+.custom-select-trigger:focus,
+.custom-select-trigger.active {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.custom-select-trigger span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-select-trigger span i {
+  color: var(--primary-color);
+  font-size: 13px;
+}
+
+.custom-select-trigger .arrow {
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: var(--transition-smooth);
+}
+
+.custom-select-trigger.active .arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select-options {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  padding: 4px;
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideDownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-select-options.open {
+  display: flex;
+}
+
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.custom-select-option i {
+  width: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.custom-select-option:hover {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.custom-select-option:hover i {
+  color: var(--primary-color);
+}
+
+.custom-select-option.selected {
+  background: var(--primary-color);
+  color: white;
+}
+
+.custom-select-option.selected i {
+  color: white;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Login - My Expense Tracker</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase CDN Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- App Shell for Auth -->
+  <div class="auth-shell">
+    <div style="text-align: center; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      <div style="width: 60px; height: 60px; border-radius: var(--radius-lg); background: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 28px;">
+        <i class="fa-solid fa-wallet"></i>
+      </div>
+      <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main);">Welcome Back</h2>
+      <p style="font-size: 13px; color: var(--text-muted);">Enter your credentials to access your dashboard</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form">
+      <div class="input-group">
+        <label class="input-label" for="login-email">Email Address</label>
+        <div class="input-field-icon">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" id="login-email" class="input-field" placeholder="name@domain.com" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="input-group" style="margin-bottom: 12px;">
+        <label class="input-label" for="login-password">Password</label>
+        <div class="input-field-icon">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="login-password" class="input-field" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; font-size: 12px;">
+        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500; color: var(--text-muted);">
+          <input type="checkbox" id="remember-me" checked style="width: 14px; height: 14px; accent-color: var(--primary-color);"> Remember me
+        </label>
+        <a href="#" id="forgot-pass-link" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="login-submit-btn">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 30px; font-size: 13px; color: var(--text-muted);">
+      Don't have an account? <a href="register.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Register here</a>
+    </div>
+  </div>
+
+  <!-- Dynamic Supabase Credentials Connection Overlay -->
+  <script type="module" src="js/supabase-config.js"></script>
+  <!-- Authentication logic -->
+  <script type="module" src="js/auth.js"></script>
+
+  <!-- Page Logic script -->
+  <script type="module">
+    import { loginUser, sendPasswordResetEmail } from './js/auth.js';
+    import { showToast, showConfirmDialog } from './js/ui.js';
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const rememberMe = document.getElementById('remember-me').checked;
+      const submitBtn = document.getElementById('login-submit-btn');
+
+      // Change button state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Logging in...`;
+
+      try {
+        await loginUser(email, password, rememberMe);
+        showToast('Login successful! Redirecting...', 'success');
+        
+        // Timeout to allow toast to show
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1000);
+      } catch (err) {
+        console.error(err);
+        showToast(err.message || 'Failed to authenticate. Please check your credentials.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Login`;
+      }
+    });
+
+    // Forgot password flow
+    document.getElementById('forgot-pass-link').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      
+      if (!email) {
+        showToast('Please type your email in the email field first, then click Forgot Password.', 'warning');
+        return;
+      }
+
+      const confirmed = await showConfirmDialog(
+        'Reset Password',
+        `Send password reset link to ${email}?`,
+        'Send Link',
+        'Cancel'
+      );
+
+      if (confirmed) {
+        try {
+          await sendPasswordResetEmail(email);
+          showToast('Reset email sent! Check your inbox.', 'success');
+        } catch (err) {
+          console.error(err);
+          showToast(err.message || 'Error sending reset email.', 'error');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

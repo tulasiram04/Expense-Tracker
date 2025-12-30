@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Profile - My Expense Tracker</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase CDN Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- App Shell -->
+  <div class="app-shell">
+    
+    <!-- Header -->
+    <header class="app-header" style="padding: 15px 20px 5px 20px;">
+      <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main);">My Profile</h2>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main" style="padding-top: 5px;">
+      
+      <!-- Profile Details Card -->
+      <section class="card" style="display:flex; flex-direction:column; align-items:center; gap:16px; padding:25px 20px;">
+        <!-- Avatar display -->
+        <div style="position:relative;">
+          <div class="user-avatar-container" style="width:90px; height:90px; border:3px solid white; box-shadow:var(--shadow-lg);">
+            <img src="" id="prof-avatar-img" class="user-avatar" style="display:none;" alt="Avatar">
+            <div id="prof-avatar-initial" class="user-avatar-placeholder" style="font-size:36px;">U</div>
+          </div>
+        </div>
+
+        <h3 id="prof-name-title" style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:-10px;">Loading Name...</h3>
+        <span id="prof-email-sub" style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">loading@email.com</span>
+
+        <form id="profile-details-form" style="width:100%; display:flex; flex-direction:column; gap:14px; border-top:1px solid var(--border-color); padding-top:15px;">
+          
+          <!-- Name Input -->
+          <div class="input-group">
+            <label class="input-label" for="prof-name-input">Display Name</label>
+            <input type="text" id="prof-name-input" class="input-field" required>
+          </div>
+
+          <!-- Currency Preferences -->
+          <div class="input-group">
+            <label class="input-label" for="prof-currency-input">Default Currency</label>
+            <select id="prof-currency-input" class="input-field">
+              <option value="INR">INR (₹) Rupee</option>
+              <option value="USD">USD ($) Dollar</option>
+              <option value="EUR">EUR (€) Euro</option>
+              <option value="GBP">GBP (£) Pound</option>
+            </select>
+          </div>
+
+          <!-- Profile Photo (URL or Presets) -->
+          <div class="input-group">
+            <label class="input-label">Avatar Options</label>
+            
+            <!-- Preset Row -->
+            <div style="display:flex; gap:10px; margin-bottom:10px; overflow-x:auto; padding-bottom:5px; scrollbar-width:none;">
+              <img class="preset-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" style="width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid transparent;" data-url="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix">
+              <img class="preset-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka" style="width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid transparent;" data-url="https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka">
+              <img class="preset-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Kiki" style="width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid transparent;" data-url="https://api.dicebear.com/7.x/adventurer/svg?seed=Kiki">
+              <img class="preset-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=Scooter" style="width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid transparent;" data-url="https://api.dicebear.com/7.x/adventurer/svg?seed=Scooter">
+              <img class="preset-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=Gizmo" style="width:40px; height:40px; border-radius:50%; cursor:pointer; border:2px solid transparent;" data-url="https://api.dicebear.com/7.x/bottts/svg?seed=Gizmo">
+            </div>
+
+            <!-- Custom URL Input -->
+            <input type="url" id="prof-avatar-url" class="input-field" placeholder="Paste custom avatar image URL">
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="save-profile-btn"><i class="fa-solid fa-floppy-disk"></i> Save Profile Settings</button>
+        </form>
+      </section>
+
+      <!-- Password Change Card -->
+      <section class="card">
+        <h3 class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-key" style="color:var(--primary-color);"></i> Security & Password</h3>
+        
+        <form id="password-form" style="display:flex; flex-direction:column; gap:14px;">
+          <div class="input-group">
+            <label class="input-label" for="pass-new">New Password</label>
+            <input type="password" id="pass-new" class="input-field" placeholder="At least 6 characters" required minlength="6">
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="pass-confirm">Confirm New Password</label>
+            <input type="password" id="pass-confirm" class="input-field" placeholder="Re-type new password" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-secondary" id="update-pass-btn"><i class="fa-solid fa-lock-open"></i> Update Password</button>
+        </form>
+      </section>
+
+      <!-- Meta info card (Read-only registration audits) -->
+      <section class="card" style="padding:15px; background:transparent; border-style:dashed; color:var(--text-muted); font-size:11px; display:flex; flex-direction:column; gap:6px;">
+        <div><span>Account Registered: </span><strong id="meta-created-at">-</strong></div>
+        <div><span>Last Login Recorded: </span><strong id="meta-last-login">-</strong></div>
+        <div><span>Supabase UID: </span><strong id="meta-uid" style="font-family:monospace; font-size:10px;">-</strong></div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span>Home</span>
+      </a>
+      <a href="transactions.html" class="nav-item">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>List</span>
+      </a>
+      
+      <!-- Floating Action Button (FAB) -->
+      <button class="fab-btn" id="fab-btn" title="Add Transaction">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      
+      <a href="reports.html" class="nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Supabase Config & Auth -->
+  <script type="module" src="js/supabase-config.js"></script>
+  <script type="module" src="js/auth.js"></script>
+
+  <!-- Page Logic -->
+  <script type="module">
+    import { getCurrentUser, updateUserPassword } from './js/auth.js';
+    import { getUserProfile, updateUserProfile } from './js/database.js';
+    import { initQuickAddModal, showToast } from './js/ui.js';
+
+    let currentProfile = null;
+
+    async function initProfilePage() {
+      // 1. Fetch Auth user
+      const user = await getCurrentUser();
+      if (!user) return;
+
+      document.getElementById('prof-email-sub').textContent = user.email;
+      document.getElementById('meta-uid').textContent = user.id;
+
+      // 2. Fetch Profile details
+      currentProfile = await getUserProfile();
+      if (currentProfile) {
+        document.getElementById('prof-name-title').textContent = currentProfile.name || 'User';
+        document.getElementById('prof-name-input').value = currentProfile.name || '';
+        document.getElementById('prof-currency-input').value = currentProfile.currency || 'INR';
+        document.getElementById('prof-avatar-url').value = currentProfile.avatar_url || '';
+
+        // Dates
+        document.getElementById('meta-created-at').textContent = formatDate(currentProfile.created_at);
+        document.getElementById('meta-last-login').textContent = formatDate(currentProfile.last_login);
+
+        updateAvatarDisplay(currentProfile.avatar_url, currentProfile.name);
+      }
+
+      // Check URL parameters for password reset state (triggers redirect from Supabase recovery email)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('reset') === 'true') {
+        showToast('Password recovery recovery mode active. Please enter your new password below.', 'warning');
+        document.getElementById('pass-new').focus();
+      }
+
+      // 3. Setup Listeners
+      setupListeners();
+
+      // 4. Setup FAB Quick Add
+      initQuickAddModal();
+    }
+
+    function formatDate(isoString) {
+      if (!isoString) return '-';
+      const d = new Date(isoString);
+      return d.toLocaleString('default', { 
+        day: 'numeric', 
+        month: 'short', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+
+    function updateAvatarDisplay(url, name) {
+      const img = document.getElementById('prof-avatar-img');
+      const initial = document.getElementById('prof-avatar-initial');
+
+      if (url) {
+        img.src = url;
+        img.style.display = 'block';
+        initial.style.display = 'none';
+        
+        // Highlight active preset avatar if matches
+        document.querySelectorAll('.preset-avatar').forEach(p => {
+          if (p.dataset.url === url) {
+            p.style.borderColor = 'var(--primary-color)';
+            p.style.transform = 'scale(1.1)';
+          } else {
+            p.style.borderColor = 'transparent';
+            p.style.transform = 'none';
+          }
+        });
+      } else {
+        img.style.display = 'none';
+        initial.style.display = 'block';
+        initial.textContent = name ? name.charAt(0).toUpperCase() : 'U';
+        
+        document.querySelectorAll('.preset-avatar').forEach(p => {
+          p.style.borderColor = 'transparent';
+          p.style.transform = 'none';
+        });
+      }
+    }
+
+    function setupListeners() {
+      // Preset avatar clicking
+      document.querySelectorAll('.preset-avatar').forEach(p => {
+        p.addEventListener('click', (e) => {
+          const url = e.currentTarget.dataset.url;
+          document.getElementById('prof-avatar-url').value = url;
+          updateAvatarDisplay(url, document.getElementById('prof-name-input').value);
+        });
+      });
+
+      // Custom URL typing updates avatar display live
+      document.getElementById('prof-avatar-url').addEventListener('input', (e) => {
+        const url = e.target.value.trim();
+        updateAvatarDisplay(url, document.getElementById('prof-name-input').value);
+      });
+
+      // Submit Profile Form
+      document.getElementById('profile-details-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const saveBtn = document.getElementById('save-profile-btn');
+        
+        const name = document.getElementById('prof-name-input').value.trim();
+        const currency = document.getElementById('prof-currency-input').value;
+        const avatarUrl = document.getElementById('prof-avatar-url').value.trim();
+
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+
+        try {
+          await updateUserProfile({
+            name,
+            currency,
+            avatar_url: avatarUrl
+          });
+          
+          showToast('Profile updated successfully!', 'success');
+          document.getElementById('prof-name-title').textContent = name;
+          
+          // Apply custom primary color settings to DOM instantly if loaded
+          if (currentProfile) {
+            document.documentElement.style.setProperty('--primary-color', currentProfile.theme_color);
+          }
+        } catch (err) {
+          console.error(err);
+          showToast('Failed to save profile details.', 'error');
+        } finally {
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Save Profile Settings`;
+        }
+      });
+
+      // Submit Password change form
+      document.getElementById('password-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const updateBtn = document.getElementById('update-pass-btn');
+
+        const newPass = document.getElementById('pass-new').value;
+        const confirmPass = document.getElementById('pass-confirm').value;
+
+        if (newPass.length < 6) {
+          showToast('Password must be at least 6 characters.', 'warning');
+          return;
+        }
+
+        if (newPass !== confirmPass) {
+          showToast('Passwords do not match.', 'warning');
+          return;
+        }
+
+        updateBtn.disabled = true;
+        updateBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Updating...`;
+
+        try {
+          await updateUserPassword(newPass);
+          showToast('Password updated successfully!', 'success');
+          document.getElementById('password-form').reset();
+        } catch (err) {
+          console.error(err);
+          showToast(err.message || 'Failed to update password.', 'error');
+        } finally {
+          updateBtn.disabled = false;
+          updateBtn.innerHTML = `<i class="fa-solid fa-lock-open"></i> Update Password`;
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(initProfilePage, 150);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dashboard - My Expense Tracker</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase & Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- App Shell -->
+  <div class="app-shell">
+    
+    <!-- App Header -->
+    <header class="app-header" style="padding: 15px 20px;">
+      <div class="user-badge" onclick="window.location.href='profile.html'">
+        <div class="user-avatar-container">
+          <img src="" id="user-avatar-img" class="user-avatar" style="display:none;" alt="Profile Picture">
+          <div id="user-avatar-initial" class="user-avatar-placeholder">U</div>
+        </div>
+        <div class="user-welcome">
+          <span id="user-welcome-greet">Welcome back,</span>
+          <h3 id="user-name-text">Loading...</h3>
+        </div>
+      </div>
+      
+      <div style="display:flex; gap:10px;">
+        <button class="header-action-btn" onclick="window.location.href='profile.html'" title="Profile">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <button class="header-action-btn" id="logout-btn" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Content -->
+    <main class="app-main">
+      
+      <!-- Total Balance Card -->
+      <section class="balance-card">
+        <div class="balance-card-label">Total Net Balance</div>
+        <h1 class="balance-card-amount" id="net-balance">₹0.00</h1>
+        
+        <div class="balance-stats-row">
+          <div class="balance-stat">
+            <div class="balance-stat-icon income">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+            <div class="balance-stat-info">
+              <span>Total Income</span>
+              <h4 id="stat-total-income">₹0.00</h4>
+            </div>
+          </div>
+          <div style="width: 1px; background: rgba(255,255,255,0.15);"></div>
+          <div class="balance-stat">
+            <div class="balance-stat-icon expense">
+              <i class="fa-solid fa-arrow-trend-down"></i>
+            </div>
+            <div class="balance-stat-info">
+              <span>Total Expense</span>
+              <h4 id="stat-total-expense">₹0.00</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Account Balances Row (IOB Bank, Jio Payments Bank, Cash) -->
+      <section>
+        <div class="section-title-row">
+          <h3 class="section-title">My Accounts</h3>
+        </div>
+        <div class="accounts-container">
+          <div class="account-mini-card iob">
+            <div class="account-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <span class="account-name">IOB Bank</span>
+            <span class="account-amount" id="acc-iob">₹0.00</span>
+          </div>
+          <div class="account-mini-card jio">
+            <div class="account-icon"><i class="fa-solid fa-mobile-retro"></i></div>
+            <span class="account-name">Jio Payments</span>
+            <span class="account-amount" id="acc-jio">₹0.00</span>
+          </div>
+          <div class="account-mini-card cash">
+            <div class="account-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span class="account-name">Cash Balance</span>
+            <span class="account-amount" id="acc-cash">₹0.00</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Expense Metrics (Today, Yesterday, Weekly, Monthly) -->
+      <section>
+        <div class="section-title-row">
+          <h3 class="section-title">Spending Summary</h3>
+        </div>
+        <div class="stats-grid-2">
+          <div class="mini-stat-card">
+            <span class="mini-stat-label">Today's Spend</span>
+            <span class="mini-stat-value" id="spend-today">₹0.00</span>
+          </div>
+          <div class="mini-stat-card">
+            <span class="mini-stat-label">Yesterday's Spend</span>
+            <span class="mini-stat-value" id="spend-yesterday">₹0.00</span>
+          </div>
+          <div class="mini-stat-card">
+            <span class="mini-stat-label">This Week's Spend</span>
+            <span class="mini-stat-value" id="spend-week">₹0.00</span>
+          </div>
+          <div class="mini-stat-card">
+            <span class="mini-stat-label">This Month's Spend</span>
+            <span class="mini-stat-value" id="spend-month">₹0.00</span>
+          </div>
+          <div class="mini-stat-card">
+            <span class="mini-stat-label">Average Daily Expense</span>
+            <span class="mini-stat-value" id="spend-avg-daily">₹0.00</span>
+          </div>
+          <div class="mini-stat-card">
+            <span class="mini-stat-label">Net Savings Rate</span>
+            <span class="mini-stat-value" id="savings-rate">0%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Charts -->
+      <section id="financial-split-section" class="card card-glass" style="display:flex; flex-direction:column; gap:16px;">
+        <h3 class="section-title" style="margin-bottom:0;">Financial Split</h3>
+        <div style="display:flex; gap:12px; align-items:center; justify-content:center; width:100%;">
+          <!-- Income vs Expense chart container -->
+          <div style="position:relative; flex:1; height:160px; min-width: 0;">
+            <canvas id="db-inc-exp-chart"></canvas>
+          </div>
+          <!-- Category breakdown chart container -->
+          <div style="position:relative; flex:1; height:160px; min-width: 0;">
+            <canvas id="db-category-chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Transactions List -->
+      <section>
+        <div class="section-title-row">
+          <h3 class="section-title">Recent Transactions</h3>
+          <a href="transactions.html" class="section-link">View All</a>
+        </div>
+        <div class="transaction-list" id="recent-transactions-list">
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card" style="margin-top: 10px;"></div>
+          <div class="skeleton skeleton-card" style="margin-top: 10px;"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item active">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span>Home</span>
+      </a>
+      <a href="transactions.html" class="nav-item">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>List</span>
+      </a>
+      
+      <!-- Floating Action Button (FAB) -->
+      <button class="fab-btn" id="fab-btn" title="Add Transaction">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      
+      <a href="reports.html" class="nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Dynamic Supabase Credentials Connection Overlay -->
+  <script type="module" src="js/supabase-config.js"></script>
+  <!-- Authentication Gatekeeper -->
+  <script type="module" src="js/auth.js"></script>
+
+  <!-- Dashboard Page Logic -->
+  <script type="module">
+    import { logoutUser } from './js/auth.js';
+    import { getUserProfile, getTransactions, getCategories } from './js/database.js';
+    import { renderDashboardCharts } from './js/charts.js';
+    import { initQuickAddModal, showToast } from './js/ui.js';
+
+    let currentProfile = null;
+    let categoryMap = {};
+
+    function updateGreeting() {
+      const hour = new Date().getHours();
+      let greeting = 'Good Evening,';
+      if (hour >= 5 && hour < 12) {
+        greeting = 'Good Morning,';
+      } else if (hour >= 12 && hour < 17) {
+        greeting = 'Good Afternoon,';
+      }
+      const greetElem = document.getElementById('user-welcome-greet');
+      if (greetElem) {
+        greetElem.textContent = greeting;
+      }
+    }
+
+    // Initialize Page Data
+    async function initDashboard() {
+      // Set time-based greeting
+      updateGreeting();
+
+      // Setup Logout button
+      document.getElementById('logout-btn').addEventListener('click', async () => {
+        const confirmLogout = confirm('Are you sure you want to log out?');
+        if (confirmLogout) await logoutUser();
+      });
+
+      // Load Profile info
+      try {
+        currentProfile = await getUserProfile();
+        if (currentProfile) {
+          document.getElementById('user-name-text').textContent = (currentProfile.name || 'User') + ' 👋';
+          
+          // Apply custom currency symbols across interface if saved
+          const currency = currentProfile.currency || 'INR';
+          const symbol = getCurrencySymbol(currency);
+          
+          // Set avatar initials or image
+          if (currentProfile.avatar_url) {
+            const img = document.getElementById('user-avatar-img');
+            img.src = currentProfile.avatar_url;
+            img.style.display = 'block';
+            document.getElementById('user-avatar-initial').style.display = 'none';
+          } else {
+            const initial = currentProfile.name ? currentProfile.name.charAt(0).toUpperCase() : 'U';
+            document.getElementById('user-avatar-initial').textContent = initial;
+          }
+
+          // Fetch Categories to create icon mappings
+          const categories = await getCategories();
+          categories.forEach(c => {
+            categoryMap[c.name] = { icon: c.icon, color: c.color };
+          });
+
+          // Fetch Transactions and render metrics & charts
+          await loadTransactionsData(symbol);
+        } else {
+          document.getElementById('user-name-text').textContent = 'User 👋';
+          document.getElementById('user-avatar-initial').textContent = 'U';
+          const categories = await getCategories();
+          categories.forEach(c => {
+            categoryMap[c.name] = { icon: c.icon, color: c.color };
+          });
+          await loadTransactionsData('₹');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Error loading dashboard data.', 'error');
+        document.getElementById('user-name-text').textContent = 'User 👋';
+        document.getElementById('user-avatar-initial').textContent = 'U';
+      }
+
+      // Initialize FAB Quick-add modal with refresh callback
+      initQuickAddModal(() => {
+        const symbol = getCurrencySymbol(currentProfile ? currentProfile.currency : 'INR');
+        loadTransactionsData(symbol);
+      });
+    }
+
+    // Helper to extract currencies symbol
+    function getCurrencySymbol(code) {
+      if (code === 'INR') return '₹';
+      if (code === 'USD') return '$';
+      if (code === 'EUR') return '€';
+      if (code === 'GBP') return '£';
+      return code;
+    }
+
+    // Fetch transactions & calculate financial metrics
+    async function loadTransactionsData(symbol) {
+      const transactions = await getTransactions();
+      const listEl = document.getElementById('recent-transactions-list');
+      
+      if (!transactions || transactions.length === 0) {
+        // Render Empty state
+        listEl.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-receipt"></i>
+            <h4>No Transactions</h4>
+            <p>Tap the + button below to add your first transaction and start tracking.</p>
+          </div>
+        `;
+        resetMetricFields(symbol);
+        document.getElementById('financial-split-section').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('financial-split-section').style.display = 'flex';
+
+      // 1. Calculate Balances & Metrics
+      let totalIncome = 0;
+      let totalExpense = 0;
+      let iobBal = 0;
+      let jioBal = 0;
+      let cashBal = 0;
+
+      let spendToday = 0;
+      let spendYesterday = 0;
+      let spendWeek = 0;
+      let spendMonth = 0;
+      let spendYear = 0;
+
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0];
+      
+      const yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+      // Week starting Monday
+      const currentDay = today.getDay();
+      const distanceToMonday = currentDay === 0 ? -6 : 1 - currentDay;
+      const monday = new Date(today);
+      monday.setDate(today.getDate() + distanceToMonday);
+      monday.setHours(0,0,0,0);
+
+      const thisMonth = today.getMonth();
+      const thisYear = today.getFullYear();
+
+      // Collect transaction dates for daily average
+      const expenseDaysSet = new Set();
+
+      transactions.forEach(t => {
+        const amt = parseFloat(t.amount);
+        const txDate = new Date(t.date);
+
+        // Account Balances
+        if (t.type === 'income') {
+          totalIncome += amt;
+          if (t.source === 'IOB Bank') iobBal += amt;
+          else if (t.source === 'Jio Payments Bank') jioBal += amt;
+          else if (t.source === 'Cash') cashBal += amt;
+        } else {
+          totalExpense += amt;
+          expenseDaysSet.add(t.date);
+          if (t.source === 'IOB Bank') iobBal -= amt;
+          else if (t.source === 'Jio Payments Bank') jioBal -= amt;
+          else if (t.source === 'Cash') cashBal -= amt;
+
+          // Time frame expenses
+          if (t.date === todayStr) spendToday += amt;
+          if (t.date === yesterdayStr) spendYesterday += amt;
+          if (txDate >= monday) spendWeek += amt;
+          if (txDate.getMonth() === thisMonth && txDate.getFullYear() === thisYear) spendMonth += amt;
+          if (txDate.getFullYear() === thisYear) spendYear += amt;
+        }
+      });
+
+      const netBalance = totalIncome - totalExpense;
+      const savingsRate = totalIncome > 0 ? Math.round(((totalIncome - totalExpense) / totalIncome) * 100) : 0;
+      
+      // Calculate average daily expense
+      const distinctDaysCount = expenseDaysSet.size || 1;
+      const avgDailySpend = totalExpense / distinctDaysCount;
+
+      // 2. Render numbers to UI
+      document.getElementById('net-balance').textContent = formatCurrency(netBalance, symbol);
+      document.getElementById('stat-total-income').textContent = formatCurrency(totalIncome, symbol);
+      document.getElementById('stat-total-expense').textContent = formatCurrency(totalExpense, symbol);
+      
+      document.getElementById('acc-iob').textContent = formatCurrency(iobBal, symbol);
+      document.getElementById('acc-jio').textContent = formatCurrency(jioBal, symbol);
+      document.getElementById('acc-cash').textContent = formatCurrency(cashBal, symbol);
+
+      document.getElementById('spend-today').textContent = formatCurrency(spendToday, symbol);
+      document.getElementById('spend-yesterday').textContent = formatCurrency(spendYesterday, symbol);
+      document.getElementById('spend-week').textContent = formatCurrency(spendWeek, symbol);
+      document.getElementById('spend-month').textContent = formatCurrency(spendMonth, symbol);
+      document.getElementById('spend-avg-daily').textContent = formatCurrency(avgDailySpend, symbol);
+      document.getElementById('savings-rate').textContent = (savingsRate < 0 ? '0%' : savingsRate + '%');
+
+      // Add text colors depending on balance state
+      document.getElementById('net-balance').style.color = netBalance >= 0 ? 'var(--text-main)' : 'var(--danger-color)';
+
+      // 3. Render 5 Recent Transactions
+      listEl.innerHTML = '';
+      const recent = transactions.slice(0, 5);
+      
+      recent.forEach(t => {
+        const item = document.createElement('div');
+        item.className = 'transaction-item';
+        item.onclick = () => window.location.href = `transactions.html?id=${t.id}`;
+        
+        // Lookup category details
+        const catDetails = categoryMap[t.category] || { icon: 'fa-solid fa-ellipsis', color: '#94A3B8' };
+        const displayAmt = t.type === 'income' ? `+${formatCurrency(t.amount, symbol)}` : `-${formatCurrency(t.amount, symbol)}`;
+        const amtClass = t.type === 'income' ? 'income' : 'expense';
+
+        item.innerHTML = `
+          <div class="transaction-left">
+            <div class="category-icon-wrapper" style="background-color: ${catDetails.color}15; color: ${catDetails.color};">
+              <i class="${catDetails.icon}"></i>
+            </div>
+            <div class="transaction-details">
+              <span class="transaction-desc">${t.description || t.category}</span>
+              <span class="transaction-sub">
+                <span>${formatDateLabel(t.date)}</span>
+                <span class="transaction-source-tag">${t.source}</span>
+              </span>
+            </div>
+          </div>
+          <div class="transaction-right">
+            <span class="transaction-amount ${amtClass}">${displayAmt}</span>
+            <span style="font-size: 9px; color: var(--text-light);">${t.time.substring(0, 5)}</span>
+          </div>
+        `;
+        listEl.appendChild(item);
+      });
+
+      // 4. Update Charts
+      renderDashboardCharts(transactions, symbol);
+    }
+
+    function resetMetricFields(symbol) {
+      document.getElementById('net-balance').textContent = formatCurrency(0, symbol);
+      document.getElementById('stat-total-income').textContent = formatCurrency(0, symbol);
+      document.getElementById('stat-total-expense').textContent = formatCurrency(0, symbol);
+      document.getElementById('acc-iob').textContent = formatCurrency(0, symbol);
+      document.getElementById('acc-jio').textContent = formatCurrency(0, symbol);
+      document.getElementById('acc-cash').textContent = formatCurrency(0, symbol);
+      document.getElementById('spend-today').textContent = formatCurrency(0, symbol);
+      document.getElementById('spend-yesterday').textContent = formatCurrency(0, symbol);
+      document.getElementById('spend-week').textContent = formatCurrency(0, symbol);
+      document.getElementById('spend-month').textContent = formatCurrency(0, symbol);
+      document.getElementById('spend-avg-daily').textContent = formatCurrency(0, symbol);
+      document.getElementById('savings-rate').textContent = '0%';
+    }
+
+    function formatCurrency(val, symbol) {
+      return symbol + ' ' + parseFloat(val).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatDateLabel(dateStr) {
+      const parts = dateStr.split('-');
+      return `${parts[2]}/${parts[1]}`;
+    }
+
+    // Trigger Init
+    window.addEventListener('load', () => {
+      // Delay briefly to allow auth session check to settle
+      setTimeout(initDashboard, 150);
+    });
+  </script>
+</body>
+</html>

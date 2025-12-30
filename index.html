@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>My Expense Tracker</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase CDN Script (Loaded synchronously) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- App Shell for Loader -->
+  <div class="auth-shell" style="align-items: center; justify-content: center; gap: 20px;">
+    <div style="font-size: 48px; color: var(--primary-color); animation: scaleUp 0.6s infinite alternate;">
+      <i class="fa-solid fa-wallet"></i>
+    </div>
+    <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-top: 10px;">My Expense Tracker</h2>
+    
+    <!-- Spinner loader -->
+    <div style="width: 30px; height: 30px; border: 3px solid var(--border-color); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s infinite linear;"></div>
+    <span style="font-size: 12px; color: var(--text-muted); font-weight: 500;">Securing session...</span>
+  </div>
+
+  <style>
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- Supabase Config Loader -->
+  <script type="module" src="js/supabase-config.js"></script>
+  <!-- Authentication Route Guard Trigger -->
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

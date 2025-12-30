@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Settings - My Expense Tracker</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase CDN Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- App Shell -->
+  <div class="app-shell">
+    
+    <!-- Header -->
+    <header class="app-header" style="padding: 15px 20px 5px 20px;">
+      <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main);">Settings</h2>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main" style="padding-top: 5px;">
+      
+      <!-- 1. MONTHLY BUDGET PLANNER -->
+      <section class="card">
+        <h3 class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-bullseye" style="color:var(--primary-color);"></i> Monthly Budget Planner</h3>
+        
+        <div class="btn-row" style="margin-bottom:12px;">
+          <div class="input-group" style="flex:1; margin-bottom:0;">
+            <label class="input-label">Select Month</label>
+            <input type="month" id="budget-month" class="input-field" style="padding:8px 12px; font-size:13px;">
+          </div>
+        </div>
+
+        <form id="budget-form" style="display:flex; flex-direction:column; gap:10px; margin-bottom:15px; border-bottom:1px solid var(--border-color); padding-bottom:15px;">
+          <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:10px;">
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label">Category</label>
+              <select id="budget-category" class="input-field" style="padding:8px 12px; font-size:13px;" required>
+                <!-- Dynamic categories -->
+              </select>
+            </div>
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label">Limit Amount</label>
+              <input type="number" id="budget-amount" class="input-field" placeholder="Limit" min="0.01" step="any" style="padding:8px 12px; font-size:13px;" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="padding:8px 12px; font-size:12px;"><i class="fa-solid fa-plus"></i> Set Budget</button>
+        </form>
+
+        <!-- Budget progress rows -->
+        <div class="budget-list" id="budget-list-container">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- 2. THEME & NOTIFICATIONS -->
+      <section class="card">
+        <h3 class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-palette" style="color:var(--primary-color);"></i> Personalization</h3>
+        
+        <!-- Color Dots Selection -->
+        <div class="input-group">
+          <label class="input-label">App Theme Color</label>
+          <div style="display:flex; gap:12px; margin-top:6px;">
+            <div class="theme-dot active" data-color="#2563EB" style="background:#2563EB;"></div>
+            <div class="theme-dot" data-color="#8B5CF6" style="background:#8B5CF6;"></div>
+            <div class="theme-dot" data-color="#EF4444" style="background:#EF4444;"></div>
+            <div class="theme-dot" data-color="#10B981" style="background:#10B981;"></div>
+            <div class="theme-dot" data-color="#F59E0B" style="background:#F59E0B;"></div>
+          </div>
+        </div>
+
+        <div class="switch-container">
+          <div class="switch-label">
+            <span class="switch-title">Push Notifications</span>
+            <span class="switch-desc">Receive weekly budget status updates</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="notifications-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- 3. CATEGORY MANAGEMENT -->
+      <section class="card">
+        <h3 class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-tags" style="color:var(--primary-color);"></i> Custom Categories</h3>
+        
+        <form id="category-form" style="display:flex; flex-direction:column; gap:10px; margin-bottom:15px; border-bottom:1px solid var(--border-color); padding-bottom:15px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label">Category Name</label>
+              <input type="text" id="cat-name" class="input-field" placeholder="e.g. Subs" style="padding:8px 12px; font-size:13px;" required>
+            </div>
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label">Type</label>
+              <select id="cat-type" class="input-field" style="padding:8px 12px; font-size:13px;" required>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:10px;">
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label">Color</label>
+              <input type="color" id="cat-color" class="input-field" value="#3B82F6" style="padding:2px; height:36px; cursor:pointer;" required>
+            </div>
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label">Icon</label>
+              <select id="cat-icon" class="input-field" style="padding:8px 12px; font-size:13px;" required>
+                <option value="fa-solid fa-star">⭐ Star</option>
+                <option value="fa-solid fa-gamepad">🎮 Game</option>
+                <option value="fa-solid fa-gift">🎁 Gift</option>
+                <option value="fa-solid fa-mug-hot">☕ Coffee</option>
+                <option value="fa-solid fa-laptop">💻 Tech</option>
+                <option value="fa-solid fa-dumbbell">💪 Gym</option>
+                <option value="fa-solid fa-car">🚗 Vehicle</option>
+                <option value="fa-solid fa-music">🎵 Music</option>
+                <option value="fa-solid fa-baby">👶 Baby</option>
+                <option value="fa-solid fa-scissors">💈 Barber</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="padding:8px 12px; font-size:12px;"><i class="fa-solid fa-plus"></i> Add Category</button>
+        </form>
+
+        <div id="categories-list-container" style="display:flex; flex-direction:column; gap:8px;">
+          <!-- Dynamically populated categories list with delete button -->
+        </div>
+      </section>
+
+      <!-- 4. DATA BACKUP / RESTORE & ACTIONS -->
+      <section class="card">
+        <h3 class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-server" style="color:var(--primary-color);"></i> Database Tools</h3>
+        
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <button id="backup-btn" class="btn btn-outline" style="font-size:13px;"><i class="fa-solid fa-cloud-arrow-down"></i> Backup Data (JSON)</button>
+          
+          <div style="border:1px dashed var(--border-color); border-radius:var(--radius-md); padding:10px;">
+            <label class="input-label" style="display:block; margin-bottom:5px;">Restore Backup File</label>
+            <input type="file" id="restore-file-input" accept=".json" class="input-field" style="padding:6px; font-size:11px; margin-bottom:8px;">
+            <button id="restore-btn" class="btn btn-secondary" style="font-size:12px; padding:8px;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload and Restore</button>
+          </div>
+
+          <button id="delete-data-btn" class="btn btn-danger" style="font-size:13px; margin-top:10px;"><i class="fa-solid fa-trash-can"></i> Delete All Account Data</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span>Home</span>
+      </a>
+      <a href="transactions.html" class="nav-item">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>List</span>
+      </a>
+      
+      <!-- Floating Action Button (FAB) -->
+      <button class="fab-btn" id="fab-btn" title="Add Transaction">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      
+      <a href="reports.html" class="nav-item">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Reports</span>
+      </a>
+      <a href="settings.html" class="nav-item active">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Supabase Config & Auth -->
+  <script type="module" src="js/supabase-config.js"></script>
+  <script type="module" src="js/auth.js"></script>
+
+  <!-- Page Logic -->
+  <script type="module">
+    import { 
+      getUserProfile, 
+      updateUserProfile,
+      getCategories,
+      createCategory,
+      deleteCategory,
+      getBudgetSummary,
+      setBudget,
+      deleteBudget,
+      clearUserAccountData,
+      getTransactions
+    } from './js/database.js';
+    import { initQuickAddModal, showToast, showConfirmDialog } from './js/ui.js';
+    import { supabaseClient } from './js/supabase-config.js';
+
+    let currentProfile = null;
+    let currentCategories = [];
+    let symbol = '₹';
+
+    async function initSettingsPage() {
+      // 1. Load Profile
+      currentProfile = await getUserProfile();
+      if (currentProfile) {
+        symbol = getCurrencySymbol(currentProfile.currency);
+        
+        // Match theme dot active
+        document.querySelectorAll('.theme-dot').forEach(dot => {
+          if (dot.dataset.color === currentProfile.theme_color) {
+            document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            applyActiveThemeColor(currentProfile.theme_color);
+          }
+        });
+
+        // Set notifications toggle value
+        document.getElementById('notifications-toggle').checked = currentProfile.notifications_enabled;
+      }
+
+      // Set default input month
+      const now = new Date();
+      const currentMonthStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+      document.getElementById('budget-month').value = currentMonthStr;
+
+      // 2. Load Categories
+      await loadCategoriesList();
+
+      // 3. Load Budgets list for selected month
+      await loadBudgetsList();
+
+      // 4. Setup Listeners
+      setupListeners();
+
+      // 5. Setup Quick Add Callback
+      initQuickAddModal(async () => {
+        await loadBudgetsList();
+      });
+    }
+
+    function getCurrencySymbol(code) {
+      if (code === 'INR') return '₹';
+      if (code === 'USD') return '$';
+      if (code === 'EUR') return '€';
+      if (code === 'GBP') return '£';
+      return code;
+    }
+
+    // Dynamic color app override
+    function applyActiveThemeColor(color) {
+      document.documentElement.style.setProperty('--primary-color', color);
+      // Generate light version
+      document.documentElement.style.setProperty('--primary-light', color + '12');
+    }
+
+    // =========================================================================
+    // CATEGORY MANAGEMENT
+    // =========================================================================
+    async function loadCategoriesList() {
+      currentCategories = await getCategories();
+      
+      // Populate select dropdown in Budget planner
+      const dropdown = document.getElementById('budget-category');
+      dropdown.innerHTML = '';
+      
+      const expenseCats = currentCategories.filter(c => c.type === 'expense');
+      expenseCats.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.name;
+        opt.textContent = c.name;
+        dropdown.appendChild(opt);
+      });
+
+      // Populate Settings Category management list
+      const listEl = document.getElementById('categories-list-container');
+      listEl.innerHTML = '';
+
+      // Only show user-specific custom categories to allow deletion
+      const userCustom = currentCategories.filter(c => c.user_id !== null);
+      
+      if (userCustom.length === 0) {
+        listEl.innerHTML = `<span style="font-size:12px; color:var(--text-light); text-align:center; padding:10px;">No custom categories. Use form above to add custom ones.</span>`;
+        return;
+      }
+
+      userCustom.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'transaction-item';
+        row.style.padding = '8px 12px';
+        row.innerHTML = `
+          <div class="transaction-left">
+            <div class="category-icon-wrapper" style="background-color: ${c.color}15; color: ${c.color}; width:32px; height:32px; font-size:12px; border-radius:8px;">
+              <i class="${c.icon}"></i>
+            </div>
+            <span style="font-size:13px; font-weight:600; text-transform:capitalize;">${c.name} (${c.type})</span>
+          </div>
+          <button class="header-action-btn delete-cat-btn" data-id="${c.id}" style="width:30px; height:30px; border:none; background:#FEF2F2; color:#EF4444;">
+            <i class="fa-solid fa-trash-can" style="font-size:12px;"></i>
+          </button>
+        `;
+
+        row.querySelector('.delete-cat-btn').addEventListener('click', async (e) => {
+          const id = e.currentTarget.dataset.id;
+          const confirmed = await showConfirmDialog(
+            'Delete Category',
+            'Are you sure you want to delete this custom category? All transactions using this category will remain unchanged.',
+            'Delete',
+            'Cancel'
+          );
+          
+          if (confirmed) {
+            try {
+              await deleteCategory(id);
+              showToast('Category deleted', 'success');
+              await loadCategoriesList();
+            } catch (err) {
+              console.error(err);
+              showToast('Delete failed.', 'error');
+            }
+          }
+        });
+
+        listEl.appendChild(row);
+      });
+    }
+
+    // =========================================================================
+    // BUDGET MANAGEMENT
+    // =========================================================================
+    async function loadBudgetsList() {
+      const monthStr = document.getElementById('budget-month').value;
+      const listEl = document.getElementById('budget-list-container');
+      listEl.innerHTML = '<div class="skeleton-text skeleton"></div>';
+
+      try {
+        const budgetsSummary = await getBudgetSummary(monthStr);
+        listEl.innerHTML = '';
+
+        if (budgetsSummary.length === 0) {
+          listEl.innerHTML = `<span style="font-size:12px; color:var(--text-light); text-align:center; padding:10px; display:block;">No budget set for this month.</span>`;
+          return;
+        }
+
+        budgetsSummary.forEach(b => {
+          const item = document.createElement('div');
+          item.className = 'budget-item';
+          
+          const percentVal = Math.round(b.percentage);
+          const barClass = b.status; // green, yellow, red
+
+          // Lookup icon details
+          const cat = currentCategories.find(c => c.name === b.category) || { color: '#94A3B8' };
+
+          item.innerHTML = `
+            <div class="budget-header">
+              <div class="budget-name-group">
+                <div class="budget-category-dot" style="background-color:${cat.color}"></div>
+                <span>${b.category}</span>
+              </div>
+              <span class="budget-stats">
+                <span class="budget-spent">${symbol} ${Math.round(b.spent)}</span> / ${symbol} ${Math.round(b.budget)}
+              </span>
+            </div>
+            
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="progress-track" style="flex:1;">
+                <div class="progress-bar ${barClass}" style="width: ${percentVal}%"></div>
+              </div>
+              <span style="font-size:10px; font-weight:700; width:30px; text-align:right;">${percentVal}%</span>
+              
+              <!-- Delete budget icon -->
+              <button class="delete-budget-btn" data-id="${b.id}" style="border:none; background:transparent; color:var(--text-light); cursor:pointer; font-size:11px;">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          `;
+
+          item.querySelector('.delete-budget-btn').addEventListener('click', async (e) => {
+            const budgetId = e.currentTarget.dataset.id;
+            const confirmed = await showConfirmDialog(
+              'Remove Budget Limit',
+              `Remove budget configuration for ${b.category}?`,
+              'Remove',
+              'Cancel'
+            );
+            if (confirmed) {
+              try {
+                await deleteBudget(budgetId);
+                showToast('Budget limits removed', 'success');
+                await loadBudgetsList();
+              } catch (err) {
+                console.error(err);
+                showToast('Remove failed.', 'error');
+              }
+            }
+          });
+
+          listEl.appendChild(item);
+        });
+
+      } catch (err) {
+        console.error(err);
+        listEl.innerHTML = '<span style="font-size:11px; color:#EF4444;">Error fetching budgets.</span>';
+      }
+    }
+
+    // =========================================================================
+    // SYSTEM ACTIONS & LISTENERS
+    // =========================================================================
+    function setupListeners() {
+      // Month change listener for Budgets
+      document.getElementById('budget-month').addEventListener('change', () => {
+        loadBudgetsList();
+      });
+
+      // Submit budget form
+      document.getElementById('budget-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const category = document.getElementById('budget-category').value;
+        const amount = parseFloat(document.getElementById('budget-amount').value);
+        const monthStr = document.getElementById('budget-month').value;
+
+        if (isNaN(amount) || amount <= 0) {
+          showToast('Limit amount must be positive.', 'warning');
+          return;
+        }
+
+        try {
+          await setBudget(category, amount, monthStr);
+          showToast(`Budget set for ${category}`, 'success');
+          document.getElementById('budget-amount').value = '';
+          await loadBudgetsList();
+        } catch (err) {
+          console.error(err);
+          showToast('Failed to set budget.', 'error');
+        }
+      });
+
+      // Submit custom category form
+      document.getElementById('category-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('cat-name').value.trim();
+        const type = document.getElementById('cat-type').value;
+        const color = document.getElementById('cat-color').value;
+        const icon = document.getElementById('cat-icon').value;
+
+        try {
+          await createCategory(name, type, icon, color);
+          showToast(`Category "${name}" created!`, 'success');
+          document.getElementById('cat-name').value = '';
+          await loadCategoriesList();
+        } catch (err) {
+          console.error(err);
+          showToast('Failed to create category.', 'error');
+        }
+      });
+
+      // Theme dots listener
+      const dots = document.querySelectorAll('.theme-dot');
+      dots.forEach(dot => {
+        dot.addEventListener('click', async () => {
+          dots.forEach(d => d.classList.remove('active'));
+          dot.classList.add('active');
+
+          const newColor = dot.dataset.color;
+          applyActiveThemeColor(newColor);
+
+          // Save preference to profiles
+          try {
+            await updateUserProfile({ theme_color: newColor });
+            showToast('Theme color updated successfully!', 'success');
+          } catch (err) {
+            console.error(err);
+            showToast('Failed to save color preference.', 'error');
+          }
+        });
+      });
+
+      // Notification toggle listener
+      document.getElementById('notifications-toggle').addEventListener('change', async (e) => {
+        const checked = e.target.checked;
+        try {
+          await updateUserProfile({ notifications_enabled: checked });
+          showToast(`Notifications ${checked ? 'enabled' : 'disabled'}.`, 'success');
+        } catch (err) {
+          console.error(err);
+        }
+      });
+
+      // Wipe Account Data Button
+      document.getElementById('delete-data-btn').addEventListener('click', async () => {
+        const doubleCheck = await showConfirmDialog(
+          '🚨 DANGER: Wipe Database Account 🚨',
+          'Wiping your database will permanently DELETE all your transactions, budgets, custom categories, and user profiles. This action is irreversible. Are you absolutely certain?',
+          'DELETE ALL DATA',
+          'Cancel'
+        );
+
+        if (doubleCheck) {
+          try {
+            showToast('Wiping account...', 'warning');
+            await clearUserAccountData();
+          } catch (err) {
+            console.error(err);
+            showToast('Action failed.', 'error');
+          }
+        }
+      });
+
+      // Backup JSON
+      document.getElementById('backup-btn').addEventListener('click', async () => {
+        try {
+          const user = (await supabaseClient.auth.getUser()).data.user;
+          if (!user) {
+            showToast('You must be logged in to backup data.', 'error');
+            return;
+          }
+
+          const txRes = await supabaseClient.from('transactions').select('*').eq('user_id', user.id);
+          const budRes = await supabaseClient.from('budgets').select('*').eq('user_id', user.id);
+          const catRes = await supabaseClient.from('categories').select('*').eq('user_id', user.id);
+          const profRes = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
+
+          // Check if any queries failed due to missing tables
+          const errors = [txRes.error, budRes.error, catRes.error, profRes.error].filter(e => e !== null);
+          if (errors.length > 0) {
+            const hasMissingTable = errors.some(e => e.message.includes('relation') || e.message.includes('schema cache') || e.code === 'P0001');
+            if (hasMissingTable) {
+              showToast('Export failed: Database tables not found. Please run schema.sql in your Supabase SQL Editor.', 'error');
+              return;
+            }
+            throw errors[0];
+          }
+
+          const txs = txRes.data || [];
+          const bud = budRes.data || [];
+          const cat = catRes.data || [];
+          const prof = profRes.data || null;
+
+          const backupObject = {
+            version: '1.0.0',
+            exportedAt: new Date().toISOString(),
+            profile: prof,
+            categories: cat.filter(c => c.user_id !== null), // custom only
+            transactions: txs,
+            budgets: bud
+          };
+
+          const blob = new Blob([JSON.stringify(backupObject, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `my_expense_tracker_backup_${now.toISOString().split('T')[0]}.json`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          showToast('JSON backup exported successfully!', 'success');
+        } catch (err) {
+          console.error(err);
+          showToast('Export failed.', 'error');
+        }
+      });
+
+      // Restore JSON
+      document.getElementById('restore-btn').addEventListener('click', async () => {
+        const fileInput = document.getElementById('restore-file-input');
+        const file = fileInput.files[0];
+
+        if (!file) {
+          showToast('Please select a JSON backup file first.', 'warning');
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          try {
+            const backup = JSON.parse(e.target.result);
+            if (!backup.version || !backup.transactions || !backup.budgets) {
+              showToast('Invalid backup file structure.', 'error');
+              return;
+            }
+
+            const confirmed = await showConfirmDialog(
+              'Restore Backup',
+              `Warning: This will REPLACE your current transactions (${backup.transactions.length}) and budgets (${backup.budgets.length}). Continue?`,
+              'Restore Data',
+              'Cancel'
+            );
+
+            if (confirmed) {
+              const user = (await supabaseClient.auth.getUser()).data.user;
+
+              // WIPE current
+              await supabaseClient.from('transactions').delete().eq('user_id', user.id);
+              await supabaseClient.from('budgets').delete().eq('user_id', user.id);
+              await supabaseClient.from('categories').delete().eq('user_id', user.id);
+
+              // RESTORE categories (remapping user_id)
+              if (backup.categories && backup.categories.length > 0) {
+                const mappedCats = backup.categories.map(c => ({
+                  user_id: user.id,
+                  name: c.name,
+                  type: c.type,
+                  icon: c.icon,
+                  color: c.color
+                }));
+                await supabaseClient.from('categories').insert(mappedCats);
+              }
+
+              // RESTORE transactions
+              if (backup.transactions.length > 0) {
+                const mappedTxs = backup.transactions.map(t => ({
+                  user_id: user.id,
+                  date: t.date,
+                  time: t.time.includes(':') ? t.time : `${t.time}:00`,
+                  type: t.type,
+                  category: t.category,
+                  source: t.source,
+                  amount: parseFloat(t.amount),
+                  description: t.description
+                }));
+                await supabaseClient.from('transactions').insert(mappedTxs);
+              }
+
+              // RESTORE budgets
+              if (backup.budgets.length > 0) {
+                const mappedBuds = backup.budgets.map(b => ({
+                  user_id: user.id,
+                  category: b.category,
+                  amount: parseFloat(b.amount),
+                  month: b.month
+                }));
+                await supabaseClient.from('budgets').insert(mappedBuds);
+              }
+
+              showToast('Backup restored successfully!', 'success');
+              // Reload page to redraw list
+              setTimeout(() => window.location.reload(), 1500);
+            }
+
+          } catch (err) {
+            console.error(err);
+            showToast('Restore failed. Check file format.', 'error');
+          }
+        };
+        reader.readAsText(file);
+      });
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(initSettingsPage, 150);
+    });
+  </script>
+</body>
+</html>
