@@ -135,11 +135,11 @@
         <h3 class="section-title" style="margin-bottom:0;">Financial Split</h3>
         <div style="display:flex; gap:12px; align-items:center; justify-content:center; width:100%;">
           <!-- Income vs Expense chart container -->
-          <div style="position:relative; flex:1; height:160px; min-width: 0;">
+          <div style="position:relative; flex:1; height:160px; min-width: 0; width: 100%;">
             <canvas id="db-inc-exp-chart"></canvas>
           </div>
           <!-- Category breakdown chart container -->
-          <div style="position:relative; flex:1; height:160px; min-width: 0;">
+          <div style="position:relative; flex:1; height:160px; min-width: 0; width: 100%;">
             <canvas id="db-category-chart"></canvas>
           </div>
         </div>
@@ -430,8 +430,8 @@
         listEl.appendChild(item);
       });
 
-      // 4. Update Charts
-      renderDashboardCharts(transactions, symbol);
+      // 4. Update Charts with a small timeout to allow browser layout calculation
+      setTimeout(() => renderDashboardCharts(transactions, symbol), 100);
     }
 
     function resetMetricFields(symbol) {
