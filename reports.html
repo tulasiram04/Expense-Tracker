@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=1.0.2">
+  <link rel="stylesheet" href="css/style.css">
   
   <!-- Supabase & Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -31,16 +31,16 @@
       <div class="input-group">
         <label class="input-label" for="report-select">Select Report Type</label>
         <select id="report-select" class="input-field" style="padding: 12px; font-weight: 600;">
-          <option value="daily">?? Daily Spending Report</option>
-          <option value="weekly">?? Weekly Spending Report</option>
-          <option value="monthly">?? Monthly Expense Trend</option>
-          <option value="quarterly">?? Quarterly Expense Report</option>
-          <option value="yearly">??? Yearly Comparison Report</option>
-          <option value="category">?? Category Spending Breakdown</option>
-          <option value="account">?? Account Source Breakdown</option>
-          <option value="income">?? Income Analysis</option>
-          <option value="expense">?? Expense Analysis</option>
-          <option value="savings">?? Net Savings & Cash Flow</option>
+          <option value="daily">📅 Daily Spending Report</option>
+          <option value="weekly">📊 Weekly Spending Report</option>
+          <option value="monthly">📈 Monthly Expense Trend</option>
+          <option value="quarterly">📉 Quarterly Expense Report</option>
+          <option value="yearly">🗓️ Yearly Comparison Report</option>
+          <option value="category">🍕 Category Spending Breakdown</option>
+          <option value="account">🏦 Account Source Breakdown</option>
+          <option value="income">💰 Income Analysis</option>
+          <option value="expense">💸 Expense Analysis</option>
+          <option value="savings">⚖️ Net Savings & Cash Flow</option>
         </select>
       </div>
 
@@ -142,343 +142,11 @@
       });
     }
 
-        function getCurrencySymbol(code) {
+    function getCurrencySymbol(code) {
       if (code === 'INR') return '?';
-      if (code === 'USD') return '
-
-    function renderNoDataState() {
-      const mainEl = document.querySelector('.app-main');
-      mainEl.innerHTML = `
-        <div class="empty-state" style="margin-top: 80px;">
-          <i class="fa-solid fa-chart-line"></i>
-          <h4>No Report Data Available</h4>
-          <p>Please add transactions first using the + button to view spending reports.</p>
-        </div>
-      `;
-    }
-
-    function formatVal(val) {
-      return symbol + ' ' + parseFloat(val).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-    }
-
-    // =========================================================================
-    // REPORT SWITCHER LOGIC
-    // =========================================================================
-    function renderSelectedReport(type) {
-      const canvasId = 'reports-chart-canvas';
-      const statsPanel = document.getElementById('report-summary-stats');
-      const insightsPanel = document.getElementById('report-insights');
-      const titleLabel = document.getElementById('report-title-label');
-
-      // Common calculations
-      let totalIncome = 0;
-      let totalExpense = 0;
-      transactions.forEach(t => {
-        if (t.type === 'income') totalIncome += parseFloat(t.amount);
-        else totalExpense += parseFloat(t.amount);
-      });
-
-      if (type === 'daily') {
-        titleLabel.textContent = 'Daily Spending Trend (Last 10 active days)';
-        charts.renderDailyExpenseTrend(canvasId, transactions, symbol);
-        
-        // Calculate daily average
-        const dailyTotals = {};
-        transactions.filter(t => t.type === 'expense').forEach(t => {
-          dailyTotals[t.date] = (dailyTotals[t.date] || 0) + parseFloat(t.amount);
-        });
-        const dates = Object.keys(dailyTotals);
-        const totalExp = Object.values(dailyTotals).reduce((a, b) => a + b, 0);
-        const avg = dates.length > 0 ? totalExp / dates.length : 0;
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Active Days</span><h4 style="font-size:14px; font-weight:700;">${dates.length} Days</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Avg. Daily Spend</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${formatVal(avg)}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Your daily average spending is <strong>${formatVal(avg)}</strong> across <strong>${dates.length}</strong> distinct days of expense entries.
-          Monitoring daily trends helps catch sudden spikes early.
-        `;
-      } 
-      
-      else if (type === 'weekly') {
-        titleLabel.textContent = 'Weekly Spending (Current Week Mon-Sun)';
-        charts.renderWeeklySpending(canvasId, transactions, symbol);
-        
-        // Calculate weekly total
-        const today = new Date();
-        const currentDay = today.getDay();
-        const distanceToMonday = currentDay === 0 ? -6 : 1 - currentDay;
-        const monday = new Date(today);
-        monday.setDate(today.getDate() + distanceToMonday);
-        monday.setHours(0,0,0,0);
-
-        let thisWeekTotal = 0;
-        transactions.filter(t => t.type === 'expense').forEach(t => {
-          if (new Date(t.date) >= monday) thisWeekTotal += parseFloat(t.amount);
-        });
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Week Starts</span><h4 style="font-size:14px; font-weight:700;">${monday.toLocaleDateString('default', {day:'numeric', month:'short'})}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Weekly Total</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${formatVal(thisWeekTotal)}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          You have spent <strong>${formatVal(thisWeekTotal)}</strong> this week. 
-          Weekly charts are a great way to verify short-term budgets.
-        `;
-      } 
-      
-      else if (type === 'monthly') {
-        titleLabel.textContent = 'Monthly Expense Trend';
-        charts.renderMonthlyExpenseTrend(canvasId, transactions, symbol);
-        
-        // Calculate monthly average
-        const monthlyTotals = {};
-        transactions.filter(t => t.type === 'expense').forEach(t => {
-          const month = t.date.substring(0, 7);
-          monthlyTotals[month] = (monthlyTotals[month] || 0) + parseFloat(t.amount);
-        });
-        const months = Object.keys(monthlyTotals);
-        const totalExp = Object.values(monthlyTotals).reduce((a, b) => a + b, 0);
-        const avg = months.length > 0 ? totalExp / months.length : 0;
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Months Counted</span><h4 style="font-size:14px; font-weight:700;">${months.length} Months</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Avg. Monthly Spend</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${formatVal(avg)}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Your average monthly expense stands at <strong>${formatVal(avg)}</strong>. 
-          Look out for seasonality trends (e.g. spikes during festival or holiday months).
-        `;
-      } 
-      
-      else if (type === 'quarterly') {
-        titleLabel.textContent = 'Quarterly Expense Breakdown';
-        
-        // Custom group by quarters
-        const quarterlyTotals = { 'Q1': 0, 'Q2': 0, 'Q3': 0, 'Q4': 0 };
-        transactions.filter(t => t.type === 'expense').forEach(t => {
-          const month = parseInt(t.date.split('-')[1]);
-          if (month >= 1 && month <= 3) quarterlyTotals['Q1'] += parseFloat(t.amount);
-          else if (month >= 4 && month <= 6) quarterlyTotals['Q2'] += parseFloat(t.amount);
-          else if (month >= 7 && month <= 9) quarterlyTotals['Q3'] += parseFloat(t.amount);
-          else if (month >= 10 && month <= 12) quarterlyTotals['Q4'] += parseFloat(t.amount);
-        });
-
-        // Clear and draw custom quarterly chart using Chart.js on reports-chart-canvas
-        const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext('2d');
-        if (window.reportChartObj) window.reportChartObj.destroy();
-
-        window.reportChartObj = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Q1 (Jan-Mar)', 'Q2 (Apr-Jun)', 'Q3 (Jul-Sep)', 'Q4 (Oct-Dec)'],
-            datasets: [{
-              label: 'Quarterly Spending',
-              data: [quarterlyTotals['Q1'], quarterlyTotals['Q2'], quarterlyTotals['Q3'], quarterlyTotals['Q4']],
-              backgroundColor: 'rgba(139, 92, 246, 0.85)',
-              borderRadius: 4
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: { grid: { color: '#E2E8F0' }, ticks: { font: { family: 'Plus Jakarta Sans' } } },
-              x: { grid: { display: false }, ticks: { font: { family: 'Plus Jakarta Sans' } } }
-            },
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                callbacks: {
-                  label: (context) => ` Spent: ${formatVal(context.raw)}`
-                }
-              }
-            }
-          }
-        });
-
-        const totalQExp = Object.values(quarterlyTotals).reduce((a, b) => a + b, 0);
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Quarterly Total</span><h4 style="font-size:14px; font-weight:700;">${formatVal(totalQExp)}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Highest Quarter</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${getHighestQuarter(quarterlyTotals)}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Analyzing expenses by Quarter lets you see macro-level trends. 
-          Use this to evaluate your yearly budgets.
-        `;
-      } 
-      
-      else if (type === 'yearly') {
-        titleLabel.textContent = 'Yearly Comparison';
-        charts.renderYearlyComparison(canvasId, transactions, symbol);
-        
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Total Income (All)</span><h4 style="font-size:14px; font-weight:700; color:var(--success-color);">${formatVal(totalIncome)}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Total Expense (All)</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${formatVal(totalExpense)}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          This chart provides a side-by-side comparison of your total income vs. expenses for each year in the system.
-        `;
-      } 
-      
-      else if (type === 'category') {
-        titleLabel.textContent = 'Category Breakdown (Polar Area)';
-        charts.renderCategoryDoughnut(canvasId, transactions, symbol);
-
-        // Find top category
-        const catTotals = {};
-        transactions.filter(t => t.type === 'expense').forEach(t => {
-          catTotals[t.category] = (catTotals[t.category] || 0) + parseFloat(t.amount);
-        });
-        const entries = Object.entries(catTotals).sort((a,b) => b[1] - a[1]);
-        const topCat = entries.length > 0 ? entries[0] : ['None', 0];
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Total Categories</span><h4 style="font-size:14px; font-weight:700;">${entries.length}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Top Spending Cat.</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${topCat[0]} (${formatVal(topCat[1])})</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Your highest spending category is <strong>${topCat[0]}</strong>. 
-          Focusing budget reduction here will yield the highest savings.
-        `;
-      } 
-      
-      else if (type === 'account') {
-        titleLabel.textContent = 'Account Source Spending';
-        charts.renderSourcePie(canvasId, transactions, symbol);
-
-        // Calculate source totals
-        const srcTotals = {};
-        transactions.filter(t => t.type === 'expense').forEach(t => {
-          srcTotals[t.source] = (srcTotals[t.source] || 0) + parseFloat(t.amount);
-        });
-        const entries = Object.entries(srcTotals).sort((a,b) => b[1] - a[1]);
-        const topSrc = entries.length > 0 ? entries[0] : ['None', 0];
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Accounts Tracked</span><h4 style="font-size:14px; font-weight:700;">${entries.length}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Main Expense Source</span><h4 style="font-size:14px; font-weight:700; color:var(--primary-color);">${topSrc[0]} (${formatVal(topSrc[1])})</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          You pay mostly out of <strong>${topSrc[0]}</strong> for your day-to-day expenses.
-        `;
-      } 
-      
-      else if (type === 'income') {
-        titleLabel.textContent = 'Income Breakdown';
-        
-        // Income by category doughnut chart
-        const incomeTxs = transactions.filter(t => t.type === 'income');
-        const incCatTotals = {};
-        incomeTxs.forEach(t => {
-          incCatTotals[t.category] = (incCatTotals[t.category] || 0) + parseFloat(t.amount);
-        });
-        
-        const labels = Object.keys(incCatTotals);
-        const data = Object.values(incCatTotals);
-
-        const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext('2d');
-        if (window.reportChartObj) window.reportChartObj.destroy();
-
-        window.reportChartObj = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: labels.length ? labels : ['No Income'],
-            datasets: [{
-              data: data.length ? data : [0],
-              backgroundColor: ['#22C55E', '#06B6D4', '#6366F1', '#EC4899'],
-              borderWidth: 2,
-              borderColor: '#ffffff'
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Plus Jakarta Sans' } } },
-              tooltip: {
-                callbacks: {
-                  label: (context) => ` Income: ${formatVal(context.raw)}`
-                }
-              }
-            },
-            cutout: '60%'
-          }
-        });
-
-        const activeSources = [...new Set(incomeTxs.map(t => t.source))];
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Total Income</span><h4 style="font-size:14px; font-weight:700; color:var(--success-color);">${formatVal(totalIncome)}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Income Channels</span><h4 style="font-size:14px; font-weight:700;">${activeSources.length} Channels</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Your total income sums up to <strong>${formatVal(totalIncome)}</strong>. 
-          Diversifying your income streams is key to building sustainable wealth.
-        };
-        `;
-      } 
-      
-      else if (type === 'expense') {
-        titleLabel.textContent = 'Expense List Analysis';
-        charts.renderTopCategoriesHorizontal(canvasId, transactions, symbol);
-
-        const expenses = transactions.filter(t => t.type === 'expense');
-        const maxExpense = expenses.length > 0 ? Math.max(...expenses.map(e => parseFloat(e.amount))) : 0;
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Total Expense</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${formatVal(totalExpense)}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Single Highest Spend</span><h4 style="font-size:14px; font-weight:700; color:var(--danger-color);">${formatVal(maxExpense)}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Your total expenses sum up to <strong>${formatVal(totalExpense)}</strong>.
-          Your highest single purchase was <strong>${formatVal(maxExpense)}</strong>.
-        `;
-      } 
-      
-      else if (type === 'savings') {
-        titleLabel.textContent = 'Cumulative Balance (Cash Flow)';
-        charts.renderCashFlow(canvasId, transactions, symbol);
-
-        const netSavings = totalIncome - totalExpense;
-        const rate = totalIncome > 0 ? Math.round((netSavings / totalIncome) * 100) : 0;
-
-        statsPanel.innerHTML = `
-          <div><span style="font-size:10px; color:var(--text-muted);">Net Savings</span><h4 style="font-size:14px; font-weight:700; color:${netSavings >= 0 ? 'var(--success-color)' : 'var(--danger-color)'};">${formatVal(netSavings)}</h4></div>
-          <div><span style="font-size:10px; color:var(--text-muted);">Savings Percentage</span><h4 style="font-size:14px; font-weight:700;">${rate < 0 ? '0%' : rate + '%'}</h4></div>
-        `;
-        insightsPanel.innerHTML = `
-          Your cumulative cash flow represents your net financial health over time. 
-          A rising line indicates you are saving more than you spend.
-        `;
-      }
-    }
-
-    function getHighestQuarter(quarterlyObj) {
-      let maxVal = -1;
-      let maxQ = 'None';
-      Object.entries(quarterlyObj).forEach(([q, val]) => {
-        if (val > maxVal) {
-          maxVal = val;
-          maxQ = q;
-        }
-      });
-      return maxVal > 0 ? `${maxQ} (${formatVal(maxVal)})` : 'No Data';
-    }
-
-    window.addEventListener('load', () => {
-      setTimeout(initReportsPage, 150);
-    });
-  </script>
-</body>
-</html>
-;
-      if (code === 'EUR') return '�';
-      if (code === 'GBP') return '�';
+      if (code === 'USD') return '$';
+      if (code === 'EUR') return '�';
+      if (code === 'GBP') return '�';
       return code;
     }
 
