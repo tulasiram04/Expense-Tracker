@@ -79,7 +79,8 @@ body {
 .app-shell {
   width: 100%;
   max-width: 480px; /* Standard phone width */
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   background-color: var(--bg-color);
   box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
   display: flex;
