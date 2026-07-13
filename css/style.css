@@ -50,11 +50,12 @@ body {
   font-family: var(--font-main);
   background-color: #F1F5F9; /* Desktop environment background */
   color: var(--text-main);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 /* Scrollbar styling */
