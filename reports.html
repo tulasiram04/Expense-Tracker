@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1.0.1">
   
   <!-- Supabase & Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -31,16 +31,16 @@
       <div class="input-group">
         <label class="input-label" for="report-select">Select Report Type</label>
         <select id="report-select" class="input-field" style="padding: 12px; font-weight: 600;">
-          <option value="daily">📅 Daily Spending Report</option>
-          <option value="weekly">📊 Weekly Spending Report</option>
-          <option value="monthly">📈 Monthly Expense Trend</option>
-          <option value="quarterly">📉 Quarterly Expense Report</option>
-          <option value="yearly">🗓️ Yearly Comparison Report</option>
-          <option value="category">🍕 Category Spending Breakdown</option>
-          <option value="account">🏦 Account Source Breakdown</option>
-          <option value="income">💰 Income Analysis</option>
-          <option value="expense">💸 Expense Analysis</option>
-          <option value="savings">⚖️ Net Savings & Cash Flow</option>
+          <option value="daily">?? Daily Spending Report</option>
+          <option value="weekly">?? Weekly Spending Report</option>
+          <option value="monthly">?? Monthly Expense Trend</option>
+          <option value="quarterly">?? Quarterly Expense Report</option>
+          <option value="yearly">??? Yearly Comparison Report</option>
+          <option value="category">?? Category Spending Breakdown</option>
+          <option value="account">?? Account Source Breakdown</option>
+          <option value="income">?? Income Analysis</option>
+          <option value="expense">?? Expense Analysis</option>
+          <option value="savings">?? Net Savings & Cash Flow</option>
         </select>
       </div>
 
@@ -145,8 +145,8 @@
     function getCurrencySymbol(code) {
       if (code === 'INR') return '?';
       if (code === 'USD') return '$';
-      if (code === 'EUR') return '�';
-      if (code === 'GBP') return '�';
+      if (code === 'EUR') return '?';
+      if (code === 'GBP') return '?';
       return code;
     }
 
