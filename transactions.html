@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1.0.3">
   
   <!-- Supabase CDN Script -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -266,7 +266,7 @@
     import { supabaseClient } from './js/supabase-config.js';
 
     let currentProfile = null;
-    let symbol = '₹';
+    let symbol = '?';
     let categoryMap = {};
     let allFilteredTransactions = [];
 
@@ -329,10 +329,10 @@
     }
 
     function getCurrencySymbol(code) {
-      if (code === 'INR') return '₹';
+      if (code === 'INR') return '?';
       if (code === 'USD') return '$';
-      if (code === 'EUR') return '€';
-      if (code === 'GBP') return '£';
+      if (code === 'EUR') return '�';
+      if (code === 'GBP') return '�';
       return code;
     }
 
@@ -715,7 +715,7 @@
       let blob;
 
       if (isExcel) {
-        // Excel needs BOM to read UTF-8 properly (handles currency glyphs like ₹)
+        // Excel needs BOM to read UTF-8 properly (handles currency glyphs like ?)
         const BOM = '\uFEFF';
         blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8;' });
       } else {
